@@ -4,6 +4,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from asgiref.sync import async_to_sync
 import httpx
+import rclpy
+from custom_msgs.msg import CustomMessage  # Import the custom message
+import time
 
 
 
@@ -11,6 +14,12 @@ import httpx
 def hello_world(request):
     return Response({'message': 'Hello, world!'})
 
+
+# Initialize ROS and publish the custom message
+rclpy.init()  # Make sure this doesn't conflict with other nodes
+node = rclpy.create_node('django_custom_message_publisher')
+publisher = node.create_publisher(CustomMessage, 'example_topic', 10)
+msg = CustomMessage()
 
 class SendCommandView(APIView):
     def post(self, request):
@@ -31,4 +40,30 @@ class SendCommandView(APIView):
             return response.json()
 
 
-# backend functional code here or where you will post to
+
+
+
+class PublishCustomMessageView(APIView):
+    def post(self, request):
+        # Extract data from the request
+        # epoch_time = int(request.data.get("epoch_time", 0))
+        
+        data = request.data.get("data", "default_data")
+        flag = bool(request.data.get("flag", False))
+
+        epoch_time = int(time.time() * 1e9)       
+
+        # Create and publish the custom message
+        msg.epoch_time = epoch_time
+        msg.data = data
+        msg.flag = flag
+
+        publisher.publish(msg)
+        node.get_logger().info(f"Published to 'example_topic': {msg}")
+
+        return Response({"status": "success", "message": "Custom message published!"})
+    
+
+    def killNode(self, request):
+        node.destroy_node()
+        rclpy.shutdown()
