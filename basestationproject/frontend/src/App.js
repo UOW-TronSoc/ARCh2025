@@ -11,7 +11,7 @@ function App() {
             <HelloWorld />
           }
         />
-        <Route path='/' element={<Homepage />} />
+        {/* <Route path='/' element={< />} /> */}
         </Routes>
     </div>
   );

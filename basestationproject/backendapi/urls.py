@@ -1,7 +1,8 @@
 from django.urls import path
-from . import views
+from .views import *
 
 urlpatterns = [
-    path('hello-world/', views.hello_world, name='hello_world'),
+    path('hello-world/', hello_world, name='hello_world'),
+    path('send-command/', SendCommandView.as_view(), name='send-command')
     # pages urls here
 ]
