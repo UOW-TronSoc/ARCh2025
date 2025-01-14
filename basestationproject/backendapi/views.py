@@ -4,7 +4,19 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+from models import *
 
+# redis testing
+
+from django.core.cache import cache
+
+def get_data():
+    data = cache.get('my_data')
+    if data is None:
+        # Retrieve data from the database or another source
+        data = models.retrieve_data()
+        cache.set('my_data', data, timeout=3600)  # Cache for 1 hour
+    return data
 
 
 import json
