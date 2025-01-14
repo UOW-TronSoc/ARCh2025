@@ -1,4 +1,6 @@
+basestationproject/frontend/node_modules
 devel/
+*.DS_Store
 logs/
 build/
 bin/
@@ -50,3 +52,9 @@ qtcreator-*
 
 # Catkin custom files
 CATKIN_IGNORE
+
+# dirs
+ros2_ws/build
+ros2_ws/install
+ros2_ws/log
+basestationproject/frontend/.DS_Store
