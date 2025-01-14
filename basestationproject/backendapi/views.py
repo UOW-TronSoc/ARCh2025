@@ -11,4 +11,9 @@ def hello_world(request):
     return Response({'message': 'Hello, world!'})
 
 
+class kanga_connection():
+  def connect(request):
+    pass
+  
+  
 # backend functional code here or where you will post to

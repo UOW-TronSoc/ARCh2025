@@ -1,7 +1,9 @@
 from django.urls import path
-from . import views
+from .views import *
 
 urlpatterns = [
-    path('hello-world/', views.hello_world, name='hello_world'),
+    path('hello-world/', hello_world, name='hello_world'),
+    path('kanga-connection/', kanga_connection.as_view(), name="kanga-connection"),
+    
     # pages urls here
 ]
