@@ -1,0 +1,12 @@
+services:
+  app:
+    build: .
+    container_name: basestation_project
+    ports:
+      - "8000:8000"  # Django
+      - "8001:8001"  # FastAPI
+      - "3000:3000"  # React frontend
+    volumes:
+      - .:/app  # Mount code for development
+    environment:
+      - ROS_DISTRO=humble

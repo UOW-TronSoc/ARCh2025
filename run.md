@@ -1,3 +1,12 @@
+
+1) python manage.py runserver
+2) uvicorn main:app --host 127.0.0.1 --port 8001
+3) python command_listener.py
+
+curl -X POST http://127.0.0.1:8000/api/publish-custom-message/ -H "Content-Type: application/json" -d '{"epoch_time": 1673032025, "data": "Hello from Django!", "flag": true}'
+
+Overwritten epoch_time
+
 # Running ROS Docker
 
 Install Docker on your machine. Follow the instructions on the official website to install Docker on your machine.
@@ -38,3 +47,4 @@ ros2 pkg create ros_django_comms --build-type ament_python
 ```
 ros2 launch rosbridge_server rosbridge_websocket_launch.xml
 ```
+

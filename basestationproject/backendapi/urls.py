@@ -1,8 +1,11 @@
-from django.urls import path
 from . import views
 from views import *
 
 urlpatterns = [
+    path('hello-world/', hello_world, name='hello_world'),
+    path('send-command/', SendCommandView.as_view(), name='send-command'),
+    path('publish-custom-message/', PublishCustomMessageView.as_view(), name='publish_custom_message'),
+
     # API endpoint to store mock device data in Redis
     path("api/store-devices", store_devices, name="store_devices"),
 

@@ -20,10 +20,14 @@ function AppRoutes() {
 
 function App() {
   return (
-    <BrowserRouter>
-      {/* <Navbar /> */}
-      <AppRoutes />
-    </BrowserRouter>
+    <div>
+      <Routes>
+        <Route path='/HelloWorld' element = {
+            <HelloWorld />
+          }
+        />
+        </Routes>
+    </div>
   );
 }
 
