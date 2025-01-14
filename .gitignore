@@ -55,6 +55,11 @@ CATKIN_IGNORE
 /ros2_ws/install
 /ros2_ws/log
 
+/ros2_ws_py/build
+/ros2_ws_py/install
+/ros2_ws_py/log
+
+
 .DS_Store
 .gitignore
 
