@@ -107,3 +107,89 @@ class RoverStop(APIView):
 # class RoverStop(APIView):
 #     def get(self, request):
 #         pass  # Rover stop logic
+  
+# backend functional code here or where you will post to
+
+class KangaConnection(APIView):
+    def connect(request):
+        pass
+
+    def disconnect(request):
+        pass
+
+class DeviceDetails(APIView):
+    def retrieve(request):
+        pass
+
+    def store(request):
+        pass
+
+class QuickOverview(APIView):
+    def retrieve(request):
+        pass
+
+class RoboSpec(APIView):
+    def retrieve(request):
+        pass
+
+class ControlCommandLogHistory(APIView):
+    def retrieve(request):
+        pass
+
+class NLI_Section(APIView):
+    def retrieve(request):
+        pass
+
+class MapControls(APIView):
+    def control(request):
+        pass
+
+class DataGraph(APIView):
+    def retrive(request):
+        pass
+
+class DataLogHistory(APIView):
+    def retrieve(request):
+        pass
+
+class KangaConnection(APIView):
+    def connect(request):
+        pass
+
+    def disconnect(request):
+        pass
+
+class DeviceDetails(APIView):
+    def retrieve(request):
+        pass
+
+    def store(request):
+        pass
+
+class QuickOverview(APIView):
+    def retrieve(request):
+        pass
+
+class RoboSpec(APIView):
+    def retrieve(request):
+        pass
+
+class ControlCommandLogHistory(APIView):
+    def retrieve(request):
+        pass
+
+class NLI_Section(APIView):
+    def retrieve(request):
+        pass
+
+class MapControls(APIView):
+    def control(request):
+        pass
+
+class DataGraph(APIView):
+    def retrive(request):
+        pass
+
+class DataLogHistory(APIView):
+    def retrieve(request):
+        pass
