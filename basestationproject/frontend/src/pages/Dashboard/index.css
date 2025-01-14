@@ -1,0 +1,52 @@
+/* index.css */
+
+/* Root Colors */
+:root {
+  --primary-bg: #1e1e24;
+  --secondary-bg: #2d2d35;
+  --primary-text: #ffffff;
+  --secondary-text: #aaaaaa;
+  --accent-color: #6c5ce7;
+  --highlight-color: #8b6dfd;
+}
+
+body {
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+  font-family: "Arial", sans-serif;
+}
+
+.dashboard-container {
+  background-color: var(--primary-bg);
+}
+
+.section-title {
+  color: var(--primary-text);
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Cards */
+.card {
+  background-color: var(--secondary-bg);
+  color: var(--primary-text);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  text-align: center;
+}
+
+.card-highlight {
+  border: 2px solid var(--highlight-color);
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.card-percentage {
+  font-size: 1.5rem;
+  color: var(--accent-color);
+}
