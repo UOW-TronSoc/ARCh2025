@@ -3,16 +3,24 @@ from . import views
 from .views import *
 
 urlpatterns = [
+    # Connection and Device Management Paths
     path('kanga-connect/', KangaConnection.as_view(), name='Kanga Connection'),
     path('device-details/', DeviceDetails.as_view(), name='Device Details'),
     path('quick-overview/', QuickOverview.as_view(), name='Quick Overview'),
+
+    # Robot and Control Command Paths
     path('robo-spec/', RoboSpec.as_view(), name='Robo Specs'),
     path('control-command-log-history/', ControlCommandLogHistory.as_view(), name='Control Command and Log History'),
-    path('nli/', NLI_Section.as_view(), name='Natural Language Interface Section'),
-    path('map-controls/', MapControls.as_view(), name='Map and Controls'),
+
+    # Data Management Paths
     path('data-graph/', DataGraph.as_view(), name='Data Graph'),
     path('data-log-history', DataLogHistory.as_view(), name='Data Logging History'),
-    
+
+    # Interface and Map Control Paths
+    path('nli/', NLI_Section.as_view(), name='Natural Language Interface Section'),
+    path('map-controls/', MapControls.as_view(), name='Map and Controls'),
+
+
     # API endpoint to store mock device data in Redis
     path("api/store-devices", store_devices, name="store_devices"),
 
