@@ -1,0 +1,20 @@
+running egg_info
+writing ../../build/custom_msgs/custom_msgs.egg-info/PKG-INFO
+writing dependency_links to ../../build/custom_msgs/custom_msgs.egg-info/dependency_links.txt
+writing requirements to ../../build/custom_msgs/custom_msgs.egg-info/requires.txt
+writing top-level names to ../../build/custom_msgs/custom_msgs.egg-info/top_level.txt
+reading manifest file '../../build/custom_msgs/custom_msgs.egg-info/SOURCES.txt'
+writing manifest file '../../build/custom_msgs/custom_msgs.egg-info/SOURCES.txt'
+running build
+running build_py
+copying custom_msgs/__init__.py -> /Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/build/custom_msgs/build/lib/custom_msgs
+running install
+running install_lib
+running install_data
+copying resource/custom_msgs -> /Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/install/custom_msgs/share/ament_index/resource_index/packages
+copying package.xml -> /Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/install/custom_msgs/share/custom_msgs
+running install_egg_info
+removing '/Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/install/custom_msgs/lib/python3.11/site-packages/custom_msgs-0.0.0-py3.11.egg-info' (and everything under it)
+Copying ../../build/custom_msgs/custom_msgs.egg-info to /Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/install/custom_msgs/lib/python3.11/site-packages/custom_msgs-0.0.0-py3.11.egg-info
+running install_scripts
+writing list of installed files to '/Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/build/custom_msgs/install.log'

@@ -1,0 +1,24 @@
+[0.708s] Invoking command in '/Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/src/custom_msgs': CONDA_PROMPT_MODIFIER=(ros_env) PYTHONPATH=/Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/build/custom_msgs/prefix_override:/opt/anaconda3/envs/ros_env/lib/python3.11/site-packages/colcon_core/task/python/colcon_distutils_commands:/Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/install/custom_msgs/lib/python3.11/site-packages:${PYTHONPATH} SHLVL=4 _=/opt/anaconda3/envs/ros_env/bin/env /opt/anaconda3/envs/ros_env/bin/python3.11 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/custom_msgs build --build-base /Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/build/custom_msgs/build install --record /Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/build/custom_msgs/install.log --single-version-externally-managed install_data
+[0.837s] /opt/anaconda3/envs/ros_env/lib/python3.11/site-packages/setuptools/_distutils/dist.py:270: UserWarning: Unknown distribution option: 'tests_require'
+[0.837s]   warnings.warn(msg)
+[0.909s] running egg_info
+[0.920s] writing ../../build/custom_msgs/custom_msgs.egg-info/PKG-INFO
+[0.921s] writing dependency_links to ../../build/custom_msgs/custom_msgs.egg-info/dependency_links.txt
+[0.921s] writing requirements to ../../build/custom_msgs/custom_msgs.egg-info/requires.txt
+[0.922s] writing top-level names to ../../build/custom_msgs/custom_msgs.egg-info/top_level.txt
+[0.946s] reading manifest file '../../build/custom_msgs/custom_msgs.egg-info/SOURCES.txt'
+[0.946s] writing manifest file '../../build/custom_msgs/custom_msgs.egg-info/SOURCES.txt'
+[0.947s] running build
+[0.947s] running build_py
+[0.947s] copying custom_msgs/__init__.py -> /Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/build/custom_msgs/build/lib/custom_msgs
+[0.947s] running install
+[0.952s] running install_lib
+[0.964s] running install_data
+[0.964s] copying resource/custom_msgs -> /Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/install/custom_msgs/share/ament_index/resource_index/packages
+[0.964s] copying package.xml -> /Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/install/custom_msgs/share/custom_msgs
+[0.965s] running install_egg_info
+[0.977s] removing '/Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/install/custom_msgs/lib/python3.11/site-packages/custom_msgs-0.0.0-py3.11.egg-info' (and everything under it)
+[0.978s] Copying ../../build/custom_msgs/custom_msgs.egg-info to /Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/install/custom_msgs/lib/python3.11/site-packages/custom_msgs-0.0.0-py3.11.egg-info
+[0.980s] running install_scripts
+[1.061s] writing list of installed files to '/Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/build/custom_msgs/install.log'
+[1.085s] Invoked command in '/Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/src/custom_msgs' returned '0': CONDA_PROMPT_MODIFIER=(ros_env) PYTHONPATH=/Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/build/custom_msgs/prefix_override:/opt/anaconda3/envs/ros_env/lib/python3.11/site-packages/colcon_core/task/python/colcon_distutils_commands:/Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/install/custom_msgs/lib/python3.11/site-packages:${PYTHONPATH} SHLVL=4 _=/opt/anaconda3/envs/ros_env/bin/env /opt/anaconda3/envs/ros_env/bin/python3.11 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/custom_msgs build --build-base /Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/build/custom_msgs/build install --record /Users/sohamverma/Documents/Dev/ARCh/ARCh2025-BaseStation/ros2_ws_py/build/custom_msgs/install.log --single-version-externally-managed install_data
