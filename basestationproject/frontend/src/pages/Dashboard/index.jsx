@@ -1,5 +1,5 @@
-import Header from './components/Header.jsx'
-import Footer from './components/Footer.jsx'
+// import Header from './Header.jsx'
+// import Footer from './Footer.jsx'
 import KangaConnection from './pages/index/KangaConnection.jsx';
 import DeviceDetails from './pages/index/DeviceDetails.jsx';
 import QuickOverview from './pages/index/QuickOverview.jsx';
@@ -51,7 +51,6 @@ function App() {
         </div>
       </div>
     </>
-  );
+  )
 }
-
-export default App
+export default App;
