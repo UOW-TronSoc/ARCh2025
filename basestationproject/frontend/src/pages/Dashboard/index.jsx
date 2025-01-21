@@ -1,33 +1,32 @@
-// import Header from './Header.jsx'
-// import Footer from './Footer.jsx'
-import KangaConnection from './pages/index/KangaConnection.jsx';
-import DeviceDetails from './pages/index/DeviceDetails.jsx';
-import QuickOverview from './pages/index/QuickOverview.jsx';
-import RoboSpec from './pages/index/RoboSpec.jsx';
-import ControlCommandLogHistory from './pages/control_command/LogHistory.jsx';
-import NLISection from './pages/control_command/NLISection.jsx';
-import MapAndControls from './pages/control_command/MapAndControls.jsx';
-import DataGraph from './pages/data_sensors/DataGraph.jsx'
-import DataLogHistory from './pages/data_sensors/LogHistory.jsx'
+import React from "react";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import KangaConnection from "../index/KangaConnection";
+import DeviceDetails from "../index/DeviceDetails";
+import QuickOverview from "../index/QuickOverview";
+import RoboSpec from "../index/RoboSpec";
+import ControlCommandLogHistory from "../control_command/LogHistory";
+import NLISection from "../control_command/NLISection";
+import MapAndControls from "../control_command/MapAndControls";
+import DataGraph from "../data_sensors/DataGraph";
+import DataLogHistory from "../data_sensors/LogHistory";
 
-function App() {
-  return(
+const Dashboard = () => {
+  return (
     <>
-      <Header/>
-        <KangaConnection />
-        <div className="main-container">
-          <div className="middle-section">
-            <div className="left-column">
-              <DeviceDetails />
-              <QuickOverview />
-            </div>
-            <div className="right-column">
-              <RoboSpec />
-            </div>
+      <Header />
+      <KangaConnection />
+      <div className="main-container">
+        <div className="middle-section">
+          <div className="left-column">
+            <DeviceDetails />
+            <QuickOverview />
+          </div>
+          <div className="right-column">
+            <RoboSpec />
           </div>
         </div>
-      <Footer/>
-      <KangaConnection />
+      </div>
       <div className="main-container">
         <div className="middle-section">
           <div className="left-column">
@@ -39,7 +38,6 @@ function App() {
           </div>
         </div>
       </div>
-      <KangaConnection />
       <div className="main-container">
         <div className="middle-section">
           <div className="left-column">
@@ -50,7 +48,9 @@ function App() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
-  )
-}
-export default App;
+  );
+};
+
+export default Dashboard;
