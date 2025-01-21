@@ -14,7 +14,6 @@ import DataLogHistory from "../data_sensors/LogHistory";
 const Dashboard = () => {
   return (
     <>
-      <Header />
       <KangaConnection />
       <div className="main-container">
         <div className="middle-section">
@@ -48,7 +47,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
