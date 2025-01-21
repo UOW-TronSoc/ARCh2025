@@ -14,4 +14,6 @@ urlpatterns = [
     path('map-controls/', MapControls.as_view(), name='Map and Controls'),
     path('data-graph/', DataGraph.as_view(), name='Data Graph'),
     path('data-log-history', DataLogHistory.as_view(), name='Data Logging History'),
+    
+    path("send-drive-command/", SendDriveCommandView.as_view(), name="send_drive_command"),
 ]
