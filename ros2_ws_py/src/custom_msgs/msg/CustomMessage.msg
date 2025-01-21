@@ -1,5 +1,5 @@
 int64 epoch_time
 string data
 bool flag
-char leftDrive
-char rightDrive
+char left_drive
+char right_drive
