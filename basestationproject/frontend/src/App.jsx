@@ -9,49 +9,38 @@ import NLISection from './pages/control_command/NLISection.jsx';
 import MapAndControls from './pages/control_command/MapAndControls.jsx';
 import DataGraph from './pages/data_sensors/DataGraph.jsx'
 import DataLogHistory from './pages/data_sensors/LogHistory.jsx'
+import { useRoutes } from 'react-router-dom';
 
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import Dashboard from "./pages/Dashboard";
+
+function AppRoutes() {
+  const routes = useRoutes([
+    {path: "/", element: <Dashboard />},
+    {path: "/arm-control", element: <ArmControl />},
+    {path: "/settings", element: <Settings />},
+    {path: "/about", element: <About />},
+    {path: "/KangaConnection", element: <KangaConnection />},
+    {path: "/DeviceDetails", element: <DeviceDetails />},
+    {path: "/QuickOverview", element: <QuickOverview />},
+    {path: "/RoboSpec", element: <RoboSpec />},
+    {path: "/ControlCommandLogHistory", element: <ControlCommandLogHistory />},
+    {path: "/NLISection", element: <NLISection />},
+    {path: "/MapAndControls", element: <MapAndControls />},
+    {path: "/DataGraph", element: <DataGraph />},
+    {path: "/DataLogHistory", element: <DataLogHistory />}
+  ])
+}
 function App() {
-  return(
-    <>
-      <Header/>
-        <KangaConnection />
-        <div className="main-container">
-          <div className="middle-section">
-            <div className="left-column">
-              <DeviceDetails />
-              <QuickOverview />
-            </div>
-            <div className="right-column">
-              <RoboSpec />
-            </div>
-          </div>
-        </div>
-      <Footer/>
-      <KangaConnection />
-      <div className="main-container">
-        <div className="middle-section">
-          <div className="left-column">
-            <ControlCommandLogHistory />
-            <NLISection />
-          </div>
-          <div className="right-column">
-            <MapAndControls />
-          </div>
-        </div>
-      </div>
-      <KangaConnection />
-      <div className="main-container">
-        <div className="middle-section">
-          <div className="left-column">
-            <DataGraph />
-          </div>
-          <div className="right-column">
-            <DataLogHistory />
-          </div>
-        </div>
-      </div>
-    </>
+  return (
+   <div>
+    <Routes>
+      <Route path='/HelloWorld' element = { <HelloWorld /> } />
+    </Routes>
+   </div>
   );
 }
 
-export default App
+export default App;
