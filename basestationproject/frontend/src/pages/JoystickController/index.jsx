@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./styles.css"; // Ensure you include the CSS file
 
 const JoystickControl = () => {
   const [leftDrive, setLeftDrive] = useState(0);
   const [rightDrive, setRightDrive] = useState(0);
+  const [leftJoystick, setLeftJoystick] = useState({ x: 0, y: 0 });
+  const [rightJoystick, setRightJoystick] = useState({ x: 0, y: 0 });
 
   const sendCommand = async (leftDrive, rightDrive) => {
     const command = { left_drive: leftDrive, right_drive: rightDrive };
@@ -18,33 +21,83 @@ const JoystickControl = () => {
     }
   };
 
+  // Dedicated effect for left joystick
   useEffect(() => {
-    const handleGamepadInput = () => {
+    const handleLeftJoystickInput = () => {
       const gamepads = navigator.getGamepads();
-      const gamepad = gamepads[0]; // Assuming the first connected gamepad
+      const gamepad = gamepads[0]; // Use the first connected gamepad
 
       if (gamepad) {
-        // Map joystick axes (-1 to 1) to left_drive and right_drive (-100 to 100)
-        const leftAxis = Math.round(gamepad.axes[2] * -100); // Up/Down on left stick
-        const rightAxis = Math.round(gamepad.axes[4] * -100); // Up/Down on right stick
+        // Update left joystick state
+        const leftStickX = Math.round(gamepad.axes[1] * 100); // Left/right on left stick
+        const leftStickY = Math.round(gamepad.axes[2] * 100); // Up/down on left stick
+        setLeftJoystick({ x: leftStickX, y: leftStickY }); // Invert Y for correct orientation
 
-        if (leftAxis !== leftDrive || rightAxis !== rightDrive) {
-          setLeftDrive(leftAxis);
-          setRightDrive(rightAxis);
-          sendCommand(leftAxis, rightAxis);
+        // Map Y-axis of left stick to leftDrive
+        const newLeftDrive = Math.round(gamepad.axes[1] * -100);
+        if (newLeftDrive !== leftDrive) {
+          setLeftDrive(newLeftDrive);
+          sendCommand(newLeftDrive, rightDrive); // Send updated values
         }
       }
     };
 
-    const interval = setInterval(handleGamepadInput, 100); // Polling every 100ms
+    const interval = setInterval(handleLeftJoystickInput, 50); // Polling every 50ms
+    return () => clearInterval(interval);
+  }, [leftDrive, rightDrive]);
+
+  // Dedicated effect for right joystick
+  useEffect(() => {
+    const handleRightJoystickInput = () => {
+      const gamepads = navigator.getGamepads();
+      const gamepad = gamepads[0]; // Use the first connected gamepad
+
+      if (gamepad) {
+        // Update right joystick state
+        const rightStickX = Math.round(gamepad.axes[3] * 100); // Left/right on right stick
+        const rightStickY = Math.round(gamepad.axes[4] * 100); // Up/down on right stick
+        setRightJoystick({ x: rightStickX, y: rightStickY }); // Invert Y for correct orientation
+
+        // Map Y-axis of right stick to rightDrive
+        const newRightDrive = Math.round(gamepad.axes[3] * -100);
+        if (newRightDrive !== rightDrive) {
+          setRightDrive(newRightDrive);
+          sendCommand(leftDrive, newRightDrive); // Send updated values
+        }
+      }
+    };
+
+    const interval = setInterval(handleRightJoystickInput, 50); // Polling every 50ms
     return () => clearInterval(interval);
   }, [leftDrive, rightDrive]);
 
   return (
-    <div>
-      <h1>Joystick Control</h1>
-      <p>Left Drive: {leftDrive}</p>
-      <p>Right Drive: {rightDrive}</p>
+    <div className="container">
+      <h1>Dual Joystick Control</h1>
+      <div className="drive-values">
+        <p>Left Drive: {leftDrive}</p>
+        <p>Right Drive: {rightDrive}</p>
+      </div>
+      <div className="joysticks">
+        {/* Left Joystick */}
+        <div className="joystick-container">
+          <div
+            className="joystick-knob"
+            style={{
+              transform: `translate(${leftJoystick.x}px, ${leftJoystick.y}px)`,
+            }}
+          ></div>
+        </div>
+        {/* Right Joystick */}
+        <div className="joystick-container">
+          <div
+            className="joystick-knob"
+            style={{
+              transform: `translate(${rightJoystick.x}px, ${rightJoystick.y}px)`,
+            }}
+          ></div>
+        </div>
+      </div>
     </div>
   );
 };
