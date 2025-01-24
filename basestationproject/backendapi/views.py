@@ -16,8 +16,8 @@ from rest_framework.views import APIView
 
 # Custom imports
 from custom_msgs.msg import CustomMessage  # Import the custom message
-from models import *
-
+from . import models
+import time
 
 
 # redis testing
@@ -133,7 +133,7 @@ class SendCommandView(APIView):
 
     async def send_command_to_fastapi(self, command_data):
         # Async call to the FastAPI server
-        fastapi_url = "http://127.0.0.1:8001/command"
+        fastapi_url = "http://127.0.0.1:8080/command"
         async with httpx.AsyncClient() as client:
             response = await client.post(fastapi_url, json=command_data)
             return response.json()

@@ -48,3 +48,6 @@ ros2 pkg create ros_django_comms --build-type ament_python
 ros2 launch rosbridge_server rosbridge_websocket_launch.xml
 ```
 
+
+
+curl -X POST "http://127.0.0.1:8080/command" -H "Content-Type: application/json" -d '{"left_drive": 50, "right_drive": -50}'
