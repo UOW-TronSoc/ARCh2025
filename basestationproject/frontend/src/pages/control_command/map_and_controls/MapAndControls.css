@@ -1,0 +1,69 @@
+/* General styles for the map controls */
+.map-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Styling for the map section */
+  .map {
+    width: 100%;
+    height: 300px; /* Adjust as needed */
+    background-color: #eaeaea; /* Light background color for the map */
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #333;
+    border-radius: 5px;
+  }
+  
+  /* Control panel styling */
+  .control-panel {
+    width: 100%;
+    max-width: 400px; /* Limit the width of the control panel */
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Styling for the select dropdown */
+  #optionsSelect {
+    font-size: 1rem;
+  }
+  
+  /* Control buttons styling */
+  .control-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .control-buttons .btn {
+    width: 48%; /* Make buttons evenly spaced */
+  }
+  
+  .control-buttons .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .control-buttons .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+  
+  /* Optional - Add custom hover effects for buttons */
+  .control-buttons .btn:hover {
+    opacity: 0.9;
+  }
+  
+  /* Add space between control panel and map */
+  .control-panel .mb-3 {
+    margin-bottom: 20px;
+  }
+  

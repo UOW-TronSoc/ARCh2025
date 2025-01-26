@@ -4,7 +4,7 @@ from .views import *
 urlpatterns = [
     path('hello-world/', hello_world, name='hello_world'),
     # pages urls here
-
+    path('logs/', Logs.as_view(), name='Logs'),
     path('kanga-connect/', KangaConnection.as_view(), name='Kanga Connection'),
     path('device-details/', DeviceDetails.as_view(), name='Device Details'),
     path('quick-overview/', QuickOverview.as_view(), name='Quick Overview'),

@@ -16,7 +16,13 @@ class kanga_connection():
   
   
 # backend functional code here or where you will post to
+class Logs(APIView):
+    def retrieve(request):
+        pass
 
+    def store(request):
+        pass
+    
 class KangaConnection(APIView):
     def connect(request):
         pass

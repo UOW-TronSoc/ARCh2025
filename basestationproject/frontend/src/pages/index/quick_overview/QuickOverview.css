@@ -1,0 +1,23 @@
+.quick-overview {
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  .metric-card {
+    background-color: var(--primary-color, #f8f9fa);
+    border: 1px solid var(--secondary-color, #dee2e6);
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  }
+  
+  .metric-percentage {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color, #007bff);
+  }
+  
+  .metric-label {
+    font-size: 1rem;
+    color: var(--secondary-color, #6c757d);
+  }
+  

@@ -118,36 +118,6 @@ body {
   padding: 1rem 1rem;
   border-radius: 10px;
 }
-
-/* Device Details Section */
-.device-details {
-  padding: 1rem;
-  border-radius: 8px;
-}
-
-.device-name {
-  font-size: 1.5rem;
-}
-
-
-.device-data {
-  display: flex;
-  justify-content: space-between;
-}
-
-.data-item {
-  text-align: left;
-}
-
-.data-value {
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.data-desc {
-  color: #bbb;
-}
-
 /* Quick Overview Section */
 .quick-overview {
   padding: 1rem;
