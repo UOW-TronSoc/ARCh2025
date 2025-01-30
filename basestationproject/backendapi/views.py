@@ -177,7 +177,6 @@ class PublishCustomMessageView(APIView):
 Camera Controller
 """
 
-
 from django.http import StreamingHttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import rclpy
@@ -188,39 +187,42 @@ import cv2
 import json
 import threading
 
-# Dictionary to store latest images from each camera topic
+# Dictionary to store the latest frame from each camera topic
 latest_frames = {}
 
-# Camera settings (FPS, Mode, Active)
+# Camera settings (FPS, Active status, Mode: RGB or Depth)
 camera_settings = {
     "1": {"fps": 30, "active": True, "mode": "rgb"},
     "2": {"fps": 30, "active": True, "mode": "rgb"},
+    "3": {"fps": 30, "active": True, "mode": "rgb"},
+    "4": {"fps": 30, "active": True, "mode": "rgb"},
 }
 
 class CameraSubscriber(Node):
-    """ROS 2 Subscriber Node for Camera Topics"""
+    """ROS 2 Subscriber Node for Multiple Camera Topics"""
     def __init__(self):
         super().__init__("camera_subscriber")
         self.subscribers = {}
-        
+
         for cam_id in camera_settings.keys():
-            topic_name = f"camera_t{cam_id}"
+            topic_name = f"/camera_{cam_id}/image_raw"
             self.subscribers[cam_id] = self.create_subscription(
                 Image,
                 topic_name,
                 lambda msg, cam_id=cam_id: self.image_callback(msg, cam_id),
                 10
             )
-    
+            self.get_logger().info(f"Subscribed to {topic_name}")
+
     def image_callback(self, msg, cam_id):
         """Convert ROS 2 Image message to OpenCV format."""
         if not camera_settings[cam_id]["active"]:
-            return  # Ignore if camera is off
-        
-        # Convert sensor_msgs/Image to OpenCV format
+            return  # Ignore if camera is turned off
+
+        # Convert ROS 2 Image message to OpenCV format
         frame = np.frombuffer(msg.data, dtype=np.uint8).reshape((msg.height, msg.width, -1))
 
-        # If depth mode, apply color map
+        # Apply depth color map if in depth mode
         if camera_settings[cam_id]["mode"] == "depth":
             frame = cv2.applyColorMap(cv2.convertScaleAbs(frame, alpha=0.03), cv2.COLORMAP_JET)
 
@@ -232,11 +234,11 @@ ros_node = CameraSubscriber()
 threading.Thread(target=rclpy.spin, args=(ros_node,), daemon=True).start()
 
 def generate_stream(camera_id):
-    """Stream the latest frame from a ROS topic."""
+    """Continuously serve the latest frame from the specified camera."""
     while True:
         if not camera_settings[camera_id]["active"]:
             continue
-        
+
         if camera_id in latest_frames:
             frame = latest_frames[camera_id]
             _, jpeg = cv2.imencode(".jpg", frame)
@@ -245,7 +247,7 @@ def generate_stream(camera_id):
 
 @csrf_exempt
 def camera_stream(request, camera_id):
-    """Django view to stream a camera topic."""
+    """Django view to stream camera feed from a topic."""
     if camera_id not in camera_settings:
         return JsonResponse({"error": "Invalid camera ID"}, status=400)
     return StreamingHttpResponse(generate_stream(camera_id), content_type="multipart/x-mixed-replace; boundary=frame")
