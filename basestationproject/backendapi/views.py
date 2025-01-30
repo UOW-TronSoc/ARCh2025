@@ -3,11 +3,19 @@ from django.core.cache import cache
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from django.http import StreamingHttpResponse, JsonResponse
+
+from . import models
+
+
 
 # Third-party imports
+import cv2
 import httpx
 import rclpy
 import json
+import time
+import numpy as np
 from asgiref.sync import async_to_sync
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -16,9 +24,6 @@ from rest_framework.views import APIView
 
 # Custom imports
 from custom_msgs.msg import CustomMessage  # Import the custom message
-from . import models
-import time
-
 
 # redis testing
 
@@ -167,21 +172,74 @@ class PublishCustomMessageView(APIView):
         node.destroy_node()
         rclpy.shutdown()
 
-# class ArmActivate(APIView):
-#     def get(self, request):
-#         pass # Activate arm logic
-#
-# class ArmDeactivate(APIView):
-#     def get(self, request):
-#         pass  # Deactivate arm logic
-#
-#
-# # Rover Control Views
-# class RoverMove(APIView):
-#     def get(self, request):
-#         pass   # Rover move logic
-#
-#
-# class RoverStop(APIView):
-#     def get(self, request):
-#         pass  # Rover stop logic
+
+"""
+Camera Controller
+"""
+
+
+# Camera settings
+camera_settings = {
+    "front": {"fps": 30, "active": True, "mode": "rgb"},
+    "back": {"fps": 30, "active": True, "mode": "rgb"},
+}
+
+# Define RealSense camera video sources
+def get_camera_source(camera_id, mode="rgb"):
+    """Returns GStreamer pipeline string for RealSense camera"""
+    camera_index = 0 if camera_id == "front" else 1  # Adjust if needed
+
+    if mode == "depth":
+        return f"v4l2src device=/dev/video{camera_index+2} ! videoconvert ! videoscale ! video/x-raw,format=GRAY8,width=640,height=480 ! appsink"
+    else:
+        return f"v4l2src device=/dev/video{camera_index} ! videoconvert ! videoscale ! video/x-raw,format=BGR,width=640,height=480 ! appsink"
+
+def generate_stream(camera_id):
+    """Capture frames from RealSense camera"""
+    cap = cv2.VideoCapture(get_camera_source(camera_id, camera_settings[camera_id]["mode"]), cv2.CAP_GSTREAMER)
+
+    while True:
+        if not camera_settings[camera_id]["active"]:
+            break
+
+        ret, frame = cap.read()
+        if not ret:
+            continue
+
+        if camera_settings[camera_id]["mode"] == "depth":
+            frame = cv2.applyColorMap(cv2.convertScaleAbs(frame, alpha=0.03), cv2.COLORMAP_JET)
+
+        _, jpeg = cv2.imencode(".jpg", frame)
+        yield (b"--frame\r\n"
+               b"Content-Type: image/jpeg\r\n\r\n" + jpeg.tobytes() + b"\r\n")
+
+    cap.release()
+
+@csrf_exempt
+def camera_stream(request, camera_id):
+    if camera_id not in camera_settings:
+        return JsonResponse({"error": "Invalid camera ID"}, status=400)
+    return StreamingHttpResponse(generate_stream(camera_id), content_type="multipart/x-mixed-replace; boundary=frame")
+
+@csrf_exempt
+def update_fps(request, camera_id):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        fps = data.get("fps", 30)
+        camera_settings[camera_id]["fps"] = fps
+        return JsonResponse({"message": "FPS updated", "fps": fps})
+    return JsonResponse({"error": "Invalid request"}, status=400)
+
+@csrf_exempt
+def toggle_camera(request, camera_id):
+    if camera_id in camera_settings:
+        camera_settings[camera_id]["active"] = not camera_settings[camera_id]["active"]
+        return JsonResponse({"message": "Camera toggled", "active": camera_settings[camera_id]["active"]})
+    return JsonResponse({"error": "Invalid camera ID"}, status=400)
+
+@csrf_exempt
+def toggle_mode(request, camera_id):
+    if camera_id in camera_settings:
+        camera_settings[camera_id]["mode"] = "depth" if camera_settings[camera_id]["mode"] == "rgb" else "rgb"
+        return JsonResponse({"message": "Mode toggled", "mode": camera_settings[camera_id]["mode"]})
+    return JsonResponse({"error": "Invalid camera ID"}, status=400)

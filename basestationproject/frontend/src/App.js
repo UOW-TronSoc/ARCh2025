@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
 import Dashboard from "./pages/Dashboard";
 import JoystickControl from "./pages/JoystickController";
+import CameraControl from './pages/CameraControl';
 
 function App() {
   return (
@@ -10,6 +11,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/JoystickControl" element={<JoystickControl />} />
+        <Route path="/CameraControl" element={<CameraControl />} />
+        
       </Routes>
     </BrowserRouter>
   );

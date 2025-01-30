@@ -1,0 +1,29 @@
+.camera-page {
+  padding: 20px;
+}
+
+.camera-card {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.camera-stream {
+  width: 100%;
+  height: 300px;
+  background-color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-feed {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.camera-off {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+}

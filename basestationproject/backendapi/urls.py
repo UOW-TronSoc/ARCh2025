@@ -28,4 +28,10 @@ urlpatterns = [
     path('rover/move/', views.RoverMove.as_view(), name='rover-move'),
     path('rover/start/', views.RoverStart.as_view(), name='rover-start'),
     path('rover/stop/', views.RoverStop.as_view(), name='rover-stop'),
+    
+    path("camera/<str:camera_id>", views.camera_stream, name="camera_stream"),
+    path("camera/<str:camera_id>/fps", views.update_fps, name="update_fps"),
+    path("camera/<str:camera_id>/toggle", views.toggle_camera, name="toggle_camera"),
+    path("camera/<str:camera_id>/mode", views.toggle_mode, name="toggle_mode"),
+
 ]
