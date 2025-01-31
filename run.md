@@ -1,7 +1,7 @@
 
-1) python manage.py runserver
-2) uvicorn main:app --host 127.0.0.1 --port 8001
-3) python command_listener.py
+1) basestartionproject/ -> python3 manage.py runserver
+2) basestartionproject/fastapi -> uvicorn main:app --host 127.0.0.1 --port 8001
+3) basestartionproject/frontedn -> npm install -> npm run build -> npm start
 
 curl -X POST http://127.0.0.1:8000/api/publish-custom-message/ -H "Content-Type: application/json" -d '{"epoch_time": 1673032025, "data": "Hello from Django!", "flag": true}'
 

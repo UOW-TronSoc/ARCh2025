@@ -8,7 +8,6 @@ from django.http import StreamingHttpResponse, JsonResponse
 from . import models
 
 
-
 # Third-party imports
 import cv2
 import httpx
@@ -26,7 +25,6 @@ from rest_framework.views import APIView
 from custom_msgs.msg import CustomMessage  # Import the custom message
 
 # redis testing
-
 from django.core.cache import cache
 
 def get_data():
@@ -36,7 +34,6 @@ def get_data():
         data = models.retrieve_data()
         cache.set('my_data', data, timeout=3600)  # Cache for 1 hour
     return data
-
 
 
 # Store mock devices in Redis
@@ -76,7 +73,7 @@ def get_specs(request):
     return JsonResponse(specs, safe=False)
 
 # Connect rover simulation
-@csrf_exempt # temp remove in prod
+@csrf_exempt  # temp remove in prod
 def connect_rover(request):
     cache.set("rover_status", "connected", timeout=None)
     return JsonResponse({"status": "connected", "message": "Rover connected successfully!"})
@@ -89,12 +86,12 @@ def disconnect_rover(request):
 # Command-Related Views
 class RoverCommand(APIView):
     def get(self, request):
-        pass # Functionality to be added later
+        pass  # Functionality to be added later
 
 # Arm Control Views
 class ArmOverview(APIView):
     def get(self, request):
-        pass # Functionality to be added later
+        pass  # Functionality to be added later
 
 class ArmActivate(APIView):
     def get(self, request):
@@ -118,9 +115,10 @@ class RoverStop(APIView):
         return Response({"message": "Rover stop placeholder."}, status=status.HTTP_200_OK)
 
 
+# Initialize ROS only once
 
-# Initialize ROS and publish the custom message
-rclpy.init()  # Make sure this doesn't conflict with other nodes
+"""
+rclpy.init()  # Make sure this is only called once in the script
 node = rclpy.create_node('django_custom_message_publisher')
 publisher = node.create_publisher(CustomMessage, 'example_topic', 10)
 msg = CustomMessage()
@@ -144,14 +142,9 @@ class SendCommandView(APIView):
             return response.json()
 
 
-
-
-
 class PublishCustomMessageView(APIView):
     def post(self, request):
         # Extract data from the request
-        # epoch_time = int(request.data.get("epoch_time", 0))
-        
         data = request.data.get("data", "default_data")
         flag = bool(request.data.get("flag", False))
 
@@ -166,114 +159,96 @@ class PublishCustomMessageView(APIView):
         node.get_logger().info(f"Published to 'example_topic': {msg}")
 
         return Response({"status": "success", "message": "Custom message published!"})
-    
 
     def killNode(self, request):
         node.destroy_node()
         rclpy.shutdown()
 
+"""
 
 """
 Camera Controller
 """
+# camera views here
 
-from django.http import StreamingHttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
-import numpy as np
-import cv2
-import json
+from django.http import StreamingHttpResponse
 import threading
 
-# Dictionary to store the latest frame from each camera topic
-latest_frames = {}
-
-# Camera settings (FPS, Active status, Mode: RGB or Depth)
-camera_settings = {
-    "1": {"fps": 30, "active": True, "mode": "rgb"},
-    "2": {"fps": 30, "active": True, "mode": "rgb"},
-    "3": {"fps": 30, "active": True, "mode": "rgb"},
-    "4": {"fps": 30, "active": True, "mode": "rgb"},
-}
 
 class CameraSubscriber(Node):
-    """ROS 2 Subscriber Node for Multiple Camera Topics"""
     def __init__(self):
-        super().__init__("camera_subscriber")
-        self.subscribers = {}
+        super().__init__('camera_stream_subscriber')
+        self.subscription = self.create_subscription(
+            Image,
+            '/camera_0/image_raw',  # Ensure this topic matches exactly
+            self.image_callback,
+            10)
+        self.current_frame = None
+        self.lock = threading.Lock()
+        self.get_logger().info("CameraSubscriber initialized!")  # Debug log
 
-        for cam_id in camera_settings.keys():
-            topic_name = f"/camera_{cam_id}/image_raw"
-            self.subscribers[cam_id] = self.create_subscription(
-                Image,
-                topic_name,
-                lambda msg, cam_id=cam_id: self.image_callback(msg, cam_id),
-                10
-            )
-            self.get_logger().info(f"Subscribed to {topic_name}")
+    def image_callback(self, msg):
+        self.get_logger().info(f"Received an image with resolution: {msg.width}x{msg.height}")  # Debug log
+        np_arr = np.frombuffer(msg.data, np.uint8)
+        frame = np_arr.reshape((msg.height, msg.width, 3))
 
-    def image_callback(self, msg, cam_id):
-        """Convert ROS 2 Image message to OpenCV format."""
-        if not camera_settings[cam_id]["active"]:
-            return  # Ignore if camera is turned off
+        with self.lock:
+            self.current_frame = frame
 
-        # Convert ROS 2 Image message to OpenCV format
-        frame = np.frombuffer(msg.data, dtype=np.uint8).reshape((msg.height, msg.width, -1))
 
-        # Apply depth color map if in depth mode
-        if camera_settings[cam_id]["mode"] == "depth":
-            frame = cv2.applyColorMap(cv2.convertScaleAbs(frame, alpha=0.03), cv2.COLORMAP_JET)
+camera_node = None
+camera_thread = None
 
-        latest_frames[cam_id] = frame
+def start_ros_node():
+    global camera_node
+    rclpy.init()
+    camera_node = CameraSubscriber()
+    rclpy.spin(camera_node)
 
-# Initialize ROS node in a separate thread
-rclpy.init()
-ros_node = CameraSubscriber()
-threading.Thread(target=rclpy.spin, args=(ros_node,), daemon=True).start()
-
-def generate_stream(camera_id):
-    """Continuously serve the latest frame from the specified camera."""
+def generate_frames():
+    global camera_node
     while True:
-        if not camera_settings[camera_id]["active"]:
-            continue
+        if camera_node and camera_node.current_frame is not None:
+            with camera_node.lock:
+                success, jpeg = cv2.imencode('.jpg', camera_node.current_frame)
+                if not success:
+                    print("Failed to encode frame")
+                    continue
 
-        if camera_id in latest_frames:
-            frame = latest_frames[camera_id]
-            _, jpeg = cv2.imencode(".jpg", frame)
-            yield (b"--frame\r\n"
-                   b"Content-Type: image/jpeg\r\n\r\n" + jpeg.tobytes() + b"\r\n")
+                frame = jpeg.tobytes()
+                print("Streaming frame...")  # Debug log
 
-@csrf_exempt
-def camera_stream(request, camera_id):
-    """Django view to stream camera feed from a topic."""
-    if camera_id not in camera_settings:
-        return JsonResponse({"error": "Invalid camera ID"}, status=400)
-    return StreamingHttpResponse(generate_stream(camera_id), content_type="multipart/x-mixed-replace; boundary=frame")
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+        else:
+            print("No frames available yet")  # Debug log
 
-@csrf_exempt
-def update_fps(request, camera_id):
-    """Update FPS setting for a camera."""
-    if request.method == "POST":
-        data = json.loads(request.body)
-        fps = data.get("fps", 30)
-        camera_settings[camera_id]["fps"] = fps
-        return JsonResponse({"message": "FPS updated", "fps": fps})
-    return JsonResponse({"error": "Invalid request"}, status=400)
+def video_feed(request):
+    return StreamingHttpResponse(generate_frames(), content_type='multipart/x-mixed-replace; boundary=frame')
 
-@csrf_exempt
-def toggle_camera(request, camera_id):
-    """Turn a camera on or off."""
-    if camera_id in camera_settings:
-        camera_settings[camera_id]["active"] = not camera_settings[camera_id]["active"]
-        return JsonResponse({"message": "Camera toggled", "active": camera_settings[camera_id]["active"]})
-    return JsonResponse({"error": "Invalid camera ID"}, status=400)
 
-@csrf_exempt
-def toggle_mode(request, camera_id):
-    """Switch between RGB and Depth mode."""
-    if camera_id in camera_settings:
-        camera_settings[camera_id]["mode"] = "depth" if camera_settings[camera_id]["mode"] == "rgb" else "rgb"
-        return JsonResponse({"message": "Mode toggled", "mode": camera_settings[camera_id]["mode"]})
-    return JsonResponse({"error": "Invalid camera ID"}, status=400)
+
+import cv2
+import numpy as np
+from django.http import HttpResponse
+
+def get_frame(request):
+    """ Serve a single frame from the ROS2 topic as a JPEG image """
+    global camera_node
+    if camera_node and camera_node.current_frame is not None:
+        with camera_node.lock:
+            success, jpeg = cv2.imencode('.jpg', camera_node.current_frame)
+            if not success:
+                return HttpResponse(status=500)
+
+        return HttpResponse(jpeg.tobytes(), content_type="image/jpeg")
+    
+    return HttpResponse(status=204)  # No content if no frame is available
+
+
+# Start the ROS node in a separate thread
+if camera_thread is None:
+    camera_thread = threading.Thread(target=start_ros_node, daemon=True)
+    camera_thread.start()
