@@ -278,10 +278,10 @@ class MultiCameraSubscriber(Node):
             fps)
         self.current_frame = None
         self.lock = threading.Lock()
-        self.get_logger().info(f"CameraSubscriber {camera_id} initialized!")
+        # self.get_logger().info(f"CameraSubscriber {camera_id} initialized!")
 
     def image_callback(self, msg):
-        self.get_logger().info(f"Received image from camera_{self.camera_id}: {msg.width}x{msg.height}")
+        # self.get_logger().info(f"Received image from camera_{self.camera_id}: {msg.width}x{msg.height}")
         np_arr = np.frombuffer(msg.data, np.uint8)
         frame = np_arr.reshape((msg.height, msg.width, 3))
 
