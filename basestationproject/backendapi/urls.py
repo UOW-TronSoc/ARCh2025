@@ -29,7 +29,7 @@ urlpatterns = [
     path('rover/start/', views.RoverStart.as_view(), name='rover-start'),
     path('rover/stop/', views.RoverStop.as_view(), name='rover-stop'),
 
-    path('video_feed/', views.get_frame, name='video_feed'),  # Updated
+    path('video_feed/<int:camera_id>/', views.get_frame, name='video_feed'),
 
 
 ]

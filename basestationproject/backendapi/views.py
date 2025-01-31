@@ -170,7 +170,7 @@ class PublishCustomMessageView(APIView):
 Camera Controller
 """
 # camera views here
-
+"""
 from rclpy.node import Node
 from sensor_msgs.msg import Image
 from django.http import StreamingHttpResponse
@@ -235,7 +235,7 @@ import numpy as np
 from django.http import HttpResponse
 
 def get_frame(request):
-    """ Serve a single frame from the ROS2 topic as a JPEG image """
+    # Serve a single frame from the ROS2 topic as a JPEG image
     global camera_node
     if camera_node and camera_node.current_frame is not None:
         with camera_node.lock:
@@ -252,3 +252,76 @@ def get_frame(request):
 if camera_thread is None:
     camera_thread = threading.Thread(target=start_ros_node, daemon=True)
     camera_thread.start()
+
+"""
+
+import cv2
+import numpy as np
+from django.http import HttpResponse
+import threading
+import rclpy
+from rclpy.node import Node
+from rclpy.executors import MultiThreadedExecutor
+from sensor_msgs.msg import Image
+
+# Dictionary to store camera nodes
+camera_nodes = {}
+fps = 30
+class MultiCameraSubscriber(Node):
+    def __init__(self, camera_id):
+        super().__init__(f'camera_stream_subscriber_{camera_id}')
+        self.camera_id = camera_id
+        self.subscription = self.create_subscription(
+            Image,
+            f'/camera_{camera_id}/image_raw',  # Dynamic topic
+            self.image_callback,
+            fps)
+        self.current_frame = None
+        self.lock = threading.Lock()
+        self.get_logger().info(f"CameraSubscriber {camera_id} initialized!")
+
+    def image_callback(self, msg):
+        self.get_logger().info(f"Received image from camera_{self.camera_id}: {msg.width}x{msg.height}")
+        np_arr = np.frombuffer(msg.data, np.uint8)
+        frame = np_arr.reshape((msg.height, msg.width, 3))
+
+        with self.lock:
+            self.current_frame = frame
+
+
+def start_ros_nodes():
+    """ Start a single ROS2 executor for all cameras """
+    global camera_nodes
+    if not rclpy.ok():
+        rclpy.init()
+
+    executor = MultiThreadedExecutor()
+
+    for cam_id in range(4):  # Cameras 0 to 3
+        camera_nodes[cam_id] = MultiCameraSubscriber(cam_id)
+        executor.add_node(camera_nodes[cam_id])
+
+    print("✅ All camera nodes initialized! Starting executor...")
+
+    executor_thread = threading.Thread(target=executor.spin, daemon=True)
+    executor_thread.start()
+
+
+# Start ROS2 nodes when Django starts
+start_ros_nodes()
+
+
+def get_frame(request, camera_id):
+    """ Serve a single frame from a specific camera """
+    global camera_nodes
+    camera_id = int(camera_id)  # Ensure it's an integer
+
+    if camera_id in camera_nodes and camera_nodes[camera_id].current_frame is not None:
+        with camera_nodes[camera_id].lock:
+            success, jpeg = cv2.imencode('.jpg', camera_nodes[camera_id].current_frame)
+            if not success:
+                return HttpResponse(status=500)
+
+        return HttpResponse(jpeg.tobytes(), content_type="image/jpeg")
+
+    return HttpResponse(status=204)  # No content if no frame is available
