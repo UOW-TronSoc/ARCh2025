@@ -2,8 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
 import Dashboard from "./pages/Dashboard";
-import JoystickControl from "./pages/JoystickController";
-import CameraControl from './pages/CameraControl';
+import JoystickControl from "./pages/JoystickControl";
 import CameraFeed from './pages/CameraFeed';
 
 function App() {
@@ -12,7 +11,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/JoystickControl" element={<JoystickControl />} />
-        <Route path="/CameraControl" element={<CameraControl />} />
         <Route path="/CameraFeed" element={<CameraFeed />} />
         
       </Routes>

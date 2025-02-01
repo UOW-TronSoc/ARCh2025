@@ -2,9 +2,6 @@ from django.urls import path, include, re_path
 from . import views
 
 urlpatterns = [
-    path('send-drive-command/', views.SendCommandView.as_view(), name='send-command'),
-    path('publish-custom-message/', views.PublishDrivetrainControlView.as_view(), name='publish_custom_message'),
-
     # API endpoint to store mock device data in Redis
     path("store-devices", views.store_devices, name="store_devices"),
 
@@ -30,6 +27,8 @@ urlpatterns = [
     path('rover/stop/', views.RoverStop.as_view(), name='rover-stop'),
 
     path('video_feed/<int:camera_id>/', views.get_frame, name='video_feed'),
+
+    path('drivetrain-feedback/', views.get_drivetrain_feedback, name='drivetrain-feedback'),
 
 
 ]

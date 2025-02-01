@@ -16,6 +16,9 @@ find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/DrivetrainControl.msg"
+  "msg/DrivetrainFeedback.msg"
+  "msg/ScienceFeedback.msg"
+  "msg/ScienceControl.msg"
 )
 
 ament_export_dependencies(rosidl_default_runtime)

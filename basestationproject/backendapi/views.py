@@ -1,31 +1,35 @@
-# Django imports
-from django.core.cache import cache
-from django.http import JsonResponse
-from django.shortcuts import render
+# Django Imports
+from django.http import JsonResponse, StreamingHttpResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.http import StreamingHttpResponse, JsonResponse
+from django.shortcuts import render
+from django.core.cache import cache
 
+# Django Rest Framework Imports
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.decorators import api_view
+from rest_framework import status
+
+# ROS 2 and Message Imports
+import rclpy
+from rclpy.node import Node
+from rclpy.executors import MultiThreadedExecutor
+from sensor_msgs.msg import Image
+from custom_msgs.msg import DrivetrainControl, DrivetrainFeedback
+
+# Third-party Imports
+import cv2
+import numpy as np
+import httpx
+import json
+import time
+import threading
+from asgiref.sync import async_to_sync
+
+# Custom Imports
 from . import models
 
 
-# Third-party imports
-import cv2
-import httpx
-import rclpy
-import json
-import time
-import numpy as np
-from asgiref.sync import async_to_sync
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
-# Custom imports
-from custom_msgs.msg import DrivetrainControl  # Import the custom message
-
-# redis testing
-from django.core.cache import cache
 
 def get_data():
     data = cache.get('my_data')
@@ -115,71 +119,13 @@ class RoverStop(APIView):
         return Response({"message": "Rover stop placeholder."}, status=status.HTTP_200_OK)
 
 
-# Initialize ROS only once
-
-
-rclpy.init()  # Make sure this is only called once in the script
-node = rclpy.create_node('django_custom_message_publisher')
-publisher = node.create_publisher(DrivetrainControl, 'custom_msgs', 10)
-msg = DrivetrainControl()
-
-class SendCommandView(APIView):
-    def post(self, request):
-        # Data from the client
-        command_data = request.data  # e.g., {"command": "move"}
-
-        # Wrap the async call to FastAPI in `async_to_sync`
-        response = async_to_sync(self.send_command_to_fastapi)(command_data)
-
-        # Return the FastAPI response to the Django client
-        return Response(response)
-
-    async def send_command_to_fastapi(self, command_data):
-        # Async call to the FastAPI server
-        fastapi_url = "http://127.0.0.1:8080/command"
-        async with httpx.AsyncClient() as client:
-            response = await client.post(fastapi_url, json=command_data)
-            return response.json()
-
-
-class PublishDrivetrainControlView(APIView):
-    def post(self, request):
-        # Extract data from the request
-        # data = request.data.get("data", "default_data")
-        # flag = bool(request.data.get("flag", False))
-
-        epoch_time = int(time.time() * 1e9)       
-
-        # Create and publish the custom message
-        msg.epoch_time = epoch_time
-        # msg.data = data
-        # msg.flag = flag
-
-        publisher.publish(msg)
-        node.get_logger().info(f"Published to 'topic': {msg}")
-
-        return Response({"status": "success", "message": "Custom message published!"})
-
-    def killNode(self, request):
-        node.destroy_node()
-        rclpy.shutdown()
-
-
 
 """
 Camera Controller
 """
 
 
-import cv2
-import numpy as np
-from django.http import HttpResponse
-import threading
-import rclpy
-from rclpy.node import Node
-from rclpy.executors import MultiThreadedExecutor
-from sensor_msgs.msg import Image
-
+"""
 # Dictionary to store camera nodes
 camera_nodes = {}
 fps = 15
@@ -206,7 +152,7 @@ class MultiCameraSubscriber(Node):
 
 
 def start_ros_nodes():
-    """ Start a single ROS2 executor for all cameras """
+    # Start a single ROS2 executor for all cameras
     global camera_nodes
     if not rclpy.ok():
         rclpy.init()
@@ -228,7 +174,7 @@ start_ros_nodes()
 
 
 def get_frame(request, camera_id):
-    """ Serve a single frame from a specific camera """
+    # Serve a single frame from a specific camera
     global camera_nodes
     camera_id = int(camera_id)  # Ensure it's an integer
 
@@ -241,3 +187,138 @@ def get_frame(request, camera_id):
         return HttpResponse(jpeg.tobytes(), content_type="image/jpeg")
 
     return HttpResponse(status=204)  # No content if no frame is available
+
+
+""" 
+fps = 15
+
+
+class ROS2Manager:
+    """Singleton ROS2 Manager to handle initialization and node management."""
+    _instance = None
+    _lock = threading.Lock()  # Ensure thread-safe singleton initialization
+
+    def __init__(self):
+        if ROS2Manager._instance is not None:
+            raise Exception("This is a singleton class. Use get_instance() instead.")
+
+        # Initialize ROS2 if not already initialized
+        if not rclpy.ok():
+            rclpy.init()
+
+        self.executor = MultiThreadedExecutor(context=rclpy.get_default_context())  # Ensure proper context
+        self.nodes = {}  # Stores all nodes
+
+        # Start executor thread
+        self.executor_thread = threading.Thread(target=self.executor.spin, daemon=True)
+        self.executor_thread.start()
+
+    @classmethod
+    def get_instance(cls):
+        """Thread-safe singleton instance creation."""
+        with cls._lock:
+            if cls._instance is None:
+                cls._instance = ROS2Manager()
+        return cls._instance
+
+    def add_node(self, node):
+        """Add a new node to the executor and manage it."""
+        self.nodes[node.get_name()] = node
+        self.executor.add_node(node)
+
+
+# Initialize Singleton ROS2 Manager
+ros_manager = ROS2Manager.get_instance()
+
+
+class MultiCameraSubscriber(Node):
+    """Subscriber to multiple camera topics dynamically."""
+    def __init__(self, camera_id):
+        super().__init__(f'camera_stream_subscriber_{camera_id}')
+        self.camera_id = camera_id
+        self.subscription = self.create_subscription(
+            Image, f'/camera_{camera_id}/image_raw', self.image_callback, fps)
+        self.current_frame = None
+        self.lock = threading.Lock()
+
+    def image_callback(self, msg):
+        """Process received image frames."""
+        np_arr = np.frombuffer(msg.data, np.uint8)
+        frame = np_arr.reshape((msg.height, msg.width, 3))
+        with self.lock:
+            self.current_frame = frame
+
+
+def initialize_cameras():
+    """Initialize all camera subscribers dynamically."""
+    camera_nodes = {}
+    for cam_id in range(4):  # Cameras 0 to 3
+        camera_node = MultiCameraSubscriber(cam_id)
+        ros_manager.add_node(camera_node)
+        camera_nodes[cam_id] = camera_node
+    print("✅ All camera nodes initialized!")
+    return camera_nodes
+
+
+camera_nodes = initialize_cameras()
+
+
+def get_frame(request, camera_id):
+    """Serve a single frame from a specific camera."""
+    camera_id = int(camera_id)
+    if camera_id in camera_nodes and camera_nodes[camera_id].current_frame is not None:
+        with camera_nodes[camera_id].lock:
+            success, jpeg = cv2.imencode('.jpg', camera_nodes[camera_id].current_frame)
+            if not success:
+                return HttpResponse(status=500)
+        return HttpResponse(jpeg.tobytes(), content_type="image/jpeg")
+    return HttpResponse(status=204)  # No content if no frame is available
+
+
+class DrivetrainFeedbackSubscriber(Node):
+    """Subscriber to Drivetrain Feedback topic."""
+    def __init__(self):
+        super().__init__('drivetrain_feedback_subscriber')
+        self.subscription = self.create_subscription(
+            DrivetrainFeedback, '/drivetrain_feedback', self.feedback_callback, 10
+        )
+        self.latest_feedback = {}
+
+    def feedback_callback(self, msg):
+        """Process drivetrain feedback messages."""
+        self.latest_feedback = {
+            "epoch_time": msg.epoch_time,
+            "wheel_position": msg.wheel_position,
+            "wheel_velocity": msg.wheel_velocity,
+            "wheel_torque": msg.wheel_torque,
+        }
+
+from django.http import JsonResponse
+
+def get_drivetrain_feedback(request):
+    """Retrieve the latest drivetrain feedback data."""
+    global feedback_node  # Ensure we use the initialized feedback subscriber
+
+    if feedback_node.latest_feedback:
+        # Convert NumPy arrays to Python lists
+        formatted_feedback = {
+            "epoch_time": feedback_node.latest_feedback["epoch_time"],
+            "wheel_position": feedback_node.latest_feedback["wheel_position"].tolist()
+            if isinstance(feedback_node.latest_feedback["wheel_position"], np.ndarray)
+            else feedback_node.latest_feedback["wheel_position"],
+            "wheel_velocity": feedback_node.latest_feedback["wheel_velocity"].tolist()
+            if isinstance(feedback_node.latest_feedback["wheel_velocity"], np.ndarray)
+            else feedback_node.latest_feedback["wheel_velocity"],
+            "wheel_torque": feedback_node.latest_feedback["wheel_torque"].tolist()
+            if isinstance(feedback_node.latest_feedback["wheel_torque"], np.ndarray)
+            else feedback_node.latest_feedback["wheel_torque"],
+        }
+
+        return JsonResponse(formatted_feedback)
+
+    return JsonResponse({"error": "No feedback available"}, status=204)
+
+
+# Initialize drivetrain subscriber
+feedback_node = DrivetrainFeedbackSubscriber()
+ros_manager.add_node(feedback_node)
