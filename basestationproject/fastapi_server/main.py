@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import rclpy
 from rclpy.node import Node
-from custom_msgs.msg import CustomMessage
+from custom_msgs.msg import DrivetrainControl
 import time
 
 print("starting?")
@@ -31,7 +31,7 @@ class ROS2Client:
         try:
             rclpy.init()
             self.node = rclpy.create_node('fastapi_ros2_client')
-            self.publisher = self.node.create_publisher(CustomMessage, 'drive_commands', 10)
+            self.publisher = self.node.create_publisher(DrivetrainControl, 'drive_commands', 10)
             self.node.get_logger().info("ROS2Client initialized successfully!")
         except Exception as e:
             print(f"Error initializing ROS2Client: {e}")
@@ -39,10 +39,10 @@ class ROS2Client:
 
     def publish_drive_command(self, left_drive: int, right_drive: int):
       try:
-          msg = CustomMessage()
+          msg = DrivetrainControl()
           msg.epoch_time = int(time.time() * 1000)  # Current epoch time in milliseconds
-          msg.data = "Joystick command"
-          msg.flag = True
+        #   msg.data = "Joystick command"
+        #   msg.flag = True
 
           # Ensure values fit within int8 range (-128 to 127)
           if not (-128 <= left_drive <= 127):
@@ -54,13 +54,13 @@ class ROS2Client:
           msg.right_drive = right_drive
 
           # Debug logs
-          self.node.get_logger().info(
+          """self.node.get_logger().info(
               f"Publishing: left_drive={left_drive}, right_drive={right_drive}"
-          )
+          )"""
 
           # Publish the message
           self.publisher.publish(msg)
-          self.node.get_logger().info("Drive command published successfully!")
+          """self.node.get_logger().info("Drive command published successfully!")"""
 
       except Exception as e:
           self.node.get_logger().error(f"Unexpected error: {e}")
@@ -81,7 +81,7 @@ async def handle_command(command: DriveCommand):
         right_drive = command.right_drive
 
         # Log incoming data for debugging
-        print(f"Received command: left_drive={left_drive} (type={type(left_drive)}), right_drive={right_drive} (type={type(right_drive)})")
+        # print(f"Received command: left_drive={left_drive} (type={type(left_drive)}), right_drive={right_drive} (type={type(right_drive)})")
 
         # Validate range of the inputs
         if not (-100 <= left_drive <= 100) or not (-100 <= right_drive <= 100):

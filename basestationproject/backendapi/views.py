@@ -22,7 +22,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 # Custom imports
-from custom_msgs.msg import CustomMessage  # Import the custom message
+from custom_msgs.msg import DrivetrainControl  # Import the custom message
 
 # redis testing
 from django.core.cache import cache
@@ -117,11 +117,11 @@ class RoverStop(APIView):
 
 # Initialize ROS only once
 
-"""
+
 rclpy.init()  # Make sure this is only called once in the script
 node = rclpy.create_node('django_custom_message_publisher')
-publisher = node.create_publisher(CustomMessage, 'example_topic', 10)
-msg = CustomMessage()
+publisher = node.create_publisher(DrivetrainControl, 'custom_msgs', 10)
+msg = DrivetrainControl()
 
 class SendCommandView(APIView):
     def post(self, request):
@@ -142,21 +142,21 @@ class SendCommandView(APIView):
             return response.json()
 
 
-class PublishCustomMessageView(APIView):
+class PublishDrivetrainControlView(APIView):
     def post(self, request):
         # Extract data from the request
-        data = request.data.get("data", "default_data")
-        flag = bool(request.data.get("flag", False))
+        # data = request.data.get("data", "default_data")
+        # flag = bool(request.data.get("flag", False))
 
         epoch_time = int(time.time() * 1e9)       
 
         # Create and publish the custom message
         msg.epoch_time = epoch_time
-        msg.data = data
-        msg.flag = flag
+        # msg.data = data
+        # msg.flag = flag
 
         publisher.publish(msg)
-        node.get_logger().info(f"Published to 'example_topic': {msg}")
+        node.get_logger().info(f"Published to 'topic': {msg}")
 
         return Response({"status": "success", "message": "Custom message published!"})
 
@@ -164,96 +164,12 @@ class PublishCustomMessageView(APIView):
         node.destroy_node()
         rclpy.shutdown()
 
-"""
+
 
 """
 Camera Controller
 """
-# camera views here
-"""
-from rclpy.node import Node
-from sensor_msgs.msg import Image
-from django.http import StreamingHttpResponse
-import threading
 
-
-class CameraSubscriber(Node):
-    def __init__(self):
-        super().__init__('camera_stream_subscriber')
-        self.subscription = self.create_subscription(
-            Image,
-            '/camera_0/image_raw',  # Ensure this topic matches exactly
-            self.image_callback,
-            10)
-        self.current_frame = None
-        self.lock = threading.Lock()
-        self.get_logger().info("CameraSubscriber initialized!")  # Debug log
-
-    def image_callback(self, msg):
-        self.get_logger().info(f"Received an image with resolution: {msg.width}x{msg.height}")  # Debug log
-        np_arr = np.frombuffer(msg.data, np.uint8)
-        frame = np_arr.reshape((msg.height, msg.width, 3))
-
-        with self.lock:
-            self.current_frame = frame
-
-
-camera_node = None
-camera_thread = None
-
-def start_ros_node():
-    global camera_node
-    rclpy.init()
-    camera_node = CameraSubscriber()
-    rclpy.spin(camera_node)
-
-def generate_frames():
-    global camera_node
-    while True:
-        if camera_node and camera_node.current_frame is not None:
-            with camera_node.lock:
-                success, jpeg = cv2.imencode('.jpg', camera_node.current_frame)
-                if not success:
-                    print("Failed to encode frame")
-                    continue
-
-                frame = jpeg.tobytes()
-                print("Streaming frame...")  # Debug log
-
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-        else:
-            print("No frames available yet")  # Debug log
-
-def video_feed(request):
-    return StreamingHttpResponse(generate_frames(), content_type='multipart/x-mixed-replace; boundary=frame')
-
-
-
-import cv2
-import numpy as np
-from django.http import HttpResponse
-
-def get_frame(request):
-    # Serve a single frame from the ROS2 topic as a JPEG image
-    global camera_node
-    if camera_node and camera_node.current_frame is not None:
-        with camera_node.lock:
-            success, jpeg = cv2.imencode('.jpg', camera_node.current_frame)
-            if not success:
-                return HttpResponse(status=500)
-
-        return HttpResponse(jpeg.tobytes(), content_type="image/jpeg")
-    
-    return HttpResponse(status=204)  # No content if no frame is available
-
-
-# Start the ROS node in a separate thread
-if camera_thread is None:
-    camera_thread = threading.Thread(target=start_ros_node, daemon=True)
-    camera_thread.start()
-
-"""
 
 import cv2
 import numpy as np
@@ -266,7 +182,7 @@ from sensor_msgs.msg import Image
 
 # Dictionary to store camera nodes
 camera_nodes = {}
-fps = 30
+fps = 15
 class MultiCameraSubscriber(Node):
     def __init__(self, camera_id):
         super().__init__(f'camera_stream_subscriber_{camera_id}')

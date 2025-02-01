@@ -2,8 +2,8 @@ from django.urls import path, include, re_path
 from . import views
 
 urlpatterns = [
-    # path('send-drive-command/', views.SendCommandView.as_view(), name='send-command'),
-    # path('publish-custom-message/', views.PublishCustomMessageView.as_view(), name='publish_custom_message'),
+    path('send-drive-command/', views.SendCommandView.as_view(), name='send-command'),
+    path('publish-custom-message/', views.PublishDrivetrainControlView.as_view(), name='publish_custom_message'),
 
     # API endpoint to store mock device data in Redis
     path("store-devices", views.store_devices, name="store_devices"),

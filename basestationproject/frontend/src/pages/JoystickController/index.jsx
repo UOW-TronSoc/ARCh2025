@@ -29,8 +29,8 @@ const JoystickControl = () => {
 
       if (gamepad) {
         // Update left joystick state
-        const leftStickX = Math.round(gamepad.axes[1] * 100); // Left/right on left stick
-        const leftStickY = Math.round(gamepad.axes[2] * 100); // Up/down on left stick
+        const leftStickX = Math.round(gamepad.axes[0] * 100); // Left/right on left stick
+        const leftStickY = Math.round(gamepad.axes[1] * 100); // Up/down on left stick
         setLeftJoystick({ x: leftStickX, y: leftStickY }); // Invert Y for correct orientation
 
         // Map Y-axis of left stick to leftDrive
@@ -54,8 +54,8 @@ const JoystickControl = () => {
 
       if (gamepad) {
         // Update right joystick state
-        const rightStickX = Math.round(gamepad.axes[3] * 100); // Left/right on right stick
-        const rightStickY = Math.round(gamepad.axes[4] * 100); // Up/down on right stick
+        const rightStickX = Math.round(gamepad.axes[2] * 100); // Left/right on right stick
+        const rightStickY = Math.round(gamepad.axes[3] * 100); // Up/down on right stick
         setRightJoystick({ x: rightStickX, y: rightStickY }); // Invert Y for correct orientation
 
         // Map Y-axis of right stick to rightDrive
@@ -73,7 +73,7 @@ const JoystickControl = () => {
 
   return (
     <div className="container">
-      <h1>Dual Joystick Control</h1>
+      <h1 className="header">Dual Joystick Control</h1>
       <div className="drive-values">
         <p>Left Drive: {leftDrive}</p>
         <p>Right Drive: {rightDrive}</p>

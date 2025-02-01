@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
+import './styles.css'
 
 const CameraFeed = () => {
   const [activeCameras, setActiveCameras] = useState([false, false, false, false]);
@@ -32,19 +34,23 @@ const CameraFeed = () => {
   };
 
   return (
-    <div>
-      <h2>Live Camera Feeds</h2>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+    <div className="container mt-4 main-container">
+      <h2 className="text-center text-white mb-4">Live Camera Feeds</h2>
+      <div className="row">
         {[0, 1, 2, 3].map((cameraId) => (
-          <div key={cameraId} style={{ margin: "10px" }}>
-            <button onClick={() => toggleCamera(cameraId)}>
+          <div key={cameraId} className="col-md-6 d-flex flex-column align-items-center mb-4">
+            <button 
+              className={`btn ${activeCameras[cameraId] ? "btn-danger" : "btn-success"} mb-2`} 
+              onClick={() => toggleCamera(cameraId)}
+            >
               {activeCameras[cameraId] ? "Turn Off" : "Turn On"} Camera {cameraId}
             </button>
             {activeCameras[cameraId] && (
               <img
                 src={imageSrcs[cameraId]}
                 alt={`Camera ${cameraId}`}
-                style={{ width: "320px", height: "240px", border: "2px solid black" }}
+                className="img-fluid border rounded"
+                style={{ maxWidth: "100%", height: "auto" }}
               />
             )}
           </div>

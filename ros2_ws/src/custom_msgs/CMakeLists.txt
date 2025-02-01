@@ -15,7 +15,7 @@ find_package(rosidl_default_generators REQUIRED)
 find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
-  "msg/CustomMessage.msg"
+  "msg/DrivetrainControl.msg"
 )
 
 ament_export_dependencies(rosidl_default_runtime)
