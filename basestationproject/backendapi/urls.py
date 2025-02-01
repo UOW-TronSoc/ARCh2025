@@ -30,5 +30,9 @@ urlpatterns = [
 
     path('drivetrain-feedback/', views.get_drivetrain_feedback, name='drivetrain-feedback'),
 
+    path('science-feedback/', views.get_science_feedback, name='science-feedback'),
+    path('science-control/', views.set_science_control, name='science-control'),
+
+
 
 ]

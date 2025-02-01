@@ -1,7 +1,13 @@
 
-1) basestartionproject/ -> python3 manage.py runserver
-2) basestartionproject/fastapi -> uvicorn main:app --host 127.0.0.1 --port 8001
-3) basestartionproject/frontedn -> npm install -> npm run build -> npm start
+HOME = Arch
+new term (Django)
+0) . ros2_ws/install/setup.bash 
+1) basestartionproject/ -> python3 manage.py runserver 
+new term (FastAPI)
+1.5) . ros2_ws/install/setup.bash 
+2) basestartionproject/fastapi -> uvicorn main:app --host 127.0.0.1 --port 8080 (--reload on reload)
+new term (ReactJS)
+3) basestartionproject/frontend -> npm start
 
 curl -X POST http://127.0.0.1:8000/api/publish-custom-message/ -H "Content-Type: application/json" -d '{"epoch_time": 1673032025, "data": "Hello from Django!", "flag": true}'
 

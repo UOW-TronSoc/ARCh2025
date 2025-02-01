@@ -27,7 +27,7 @@ const JoystickControl = () => {
       }
     };
 
-    const interval = setInterval(fetchDrivetrainFeedback, 10); // Auto-refresh every 10ms
+    const interval = setInterval(fetchDrivetrainFeedback, 1000); // Auto-refresh every 1 sec
     return () => clearInterval(interval);
   }, []);
 
@@ -127,7 +127,7 @@ const JoystickControl = () => {
       </div>
 
       {/* Drivetrain Feedback Section */}
-      <div className="feedback-section mt-5">
+      <div className="feedback-section">
         <h2>Drivetrain Feedback</h2>
         {drivetrainFeedback.epoch_time ? (
           <div>

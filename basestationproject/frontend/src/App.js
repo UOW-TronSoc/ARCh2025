@@ -4,6 +4,7 @@ import './App.css'
 import Dashboard from "./pages/Dashboard";
 import JoystickControl from "./pages/JoystickControl";
 import CameraFeed from './pages/CameraFeed';
+import ScienceDashboard from './pages/ScienceDashboard';
 
 function App() {
   return (
@@ -12,6 +13,9 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/JoystickControl" element={<JoystickControl />} />
         <Route path="/CameraFeed" element={<CameraFeed />} />
+        <Route path="/ScienceDashboard" element={<ScienceDashboard />} />
+
+        
         
       </Routes>
     </BrowserRouter>

@@ -15,7 +15,7 @@ import rclpy
 from rclpy.node import Node
 from rclpy.executors import MultiThreadedExecutor
 from sensor_msgs.msg import Image
-from custom_msgs.msg import DrivetrainControl, DrivetrainFeedback
+from custom_msgs.msg import DrivetrainFeedback, ScienceFeedback, ScienceControl
 
 # Third-party Imports
 import cv2
@@ -119,77 +119,6 @@ class RoverStop(APIView):
         return Response({"message": "Rover stop placeholder."}, status=status.HTTP_200_OK)
 
 
-
-"""
-Camera Controller
-"""
-
-
-"""
-# Dictionary to store camera nodes
-camera_nodes = {}
-fps = 15
-class MultiCameraSubscriber(Node):
-    def __init__(self, camera_id):
-        super().__init__(f'camera_stream_subscriber_{camera_id}')
-        self.camera_id = camera_id
-        self.subscription = self.create_subscription(
-            Image,
-            f'/camera_{camera_id}/image_raw',  # Dynamic topic
-            self.image_callback,
-            fps)
-        self.current_frame = None
-        self.lock = threading.Lock()
-        # self.get_logger().info(f"CameraSubscriber {camera_id} initialized!")
-
-    def image_callback(self, msg):
-        # self.get_logger().info(f"Received image from camera_{self.camera_id}: {msg.width}x{msg.height}")
-        np_arr = np.frombuffer(msg.data, np.uint8)
-        frame = np_arr.reshape((msg.height, msg.width, 3))
-
-        with self.lock:
-            self.current_frame = frame
-
-
-def start_ros_nodes():
-    # Start a single ROS2 executor for all cameras
-    global camera_nodes
-    if not rclpy.ok():
-        rclpy.init()
-
-    executor = MultiThreadedExecutor()
-
-    for cam_id in range(4):  # Cameras 0 to 3
-        camera_nodes[cam_id] = MultiCameraSubscriber(cam_id)
-        executor.add_node(camera_nodes[cam_id])
-
-    print("✅ All camera nodes initialized! Starting executor...")
-
-    executor_thread = threading.Thread(target=executor.spin, daemon=True)
-    executor_thread.start()
-
-
-# Start ROS2 nodes when Django starts
-start_ros_nodes()
-
-
-def get_frame(request, camera_id):
-    # Serve a single frame from a specific camera
-    global camera_nodes
-    camera_id = int(camera_id)  # Ensure it's an integer
-
-    if camera_id in camera_nodes and camera_nodes[camera_id].current_frame is not None:
-        with camera_nodes[camera_id].lock:
-            success, jpeg = cv2.imencode('.jpg', camera_nodes[camera_id].current_frame)
-            if not success:
-                return HttpResponse(status=500)
-
-        return HttpResponse(jpeg.tobytes(), content_type="image/jpeg")
-
-    return HttpResponse(status=204)  # No content if no frame is available
-
-
-""" 
 fps = 15
 
 
@@ -322,3 +251,66 @@ def get_drivetrain_feedback(request):
 # Initialize drivetrain subscriber
 feedback_node = DrivetrainFeedbackSubscriber()
 ros_manager.add_node(feedback_node)
+
+class ScienceFeedbackSubscriber(Node):
+    """Subscriber to Science Feedback topic."""
+    def __init__(self):
+        super().__init__('science_feedback_subscriber')
+        self.subscription = self.create_subscription(
+            ScienceFeedback, '/science_feedback', self.feedback_callback, 10
+        )
+        self.latest_feedback = {}
+
+    def feedback_callback(self, msg):
+        """Process science feedback messages."""
+        self.latest_feedback = {
+            "water_percent": msg.water_percent,
+            "temperature": msg.temperature,
+            "ilmenite_percent": msg.ilmenite_percent,
+        }
+
+# Science Control Publisher
+class ScienceControlPublisher(Node):
+    """Publisher to Science Control topic."""
+    def __init__(self):
+        super().__init__('science_control_publisher')
+        self.publisher = self.create_publisher(ScienceControl, '/science_control', 10)
+
+    def publish_control(self, data):
+        """Publish control data."""
+        msg = ScienceControl()
+        msg.heat_status = data.get("heat_status", False)
+        msg.water_status = data.get("water_status", False)
+        msg.ilmenite_status = data.get("ilmenite_status", False)
+        msg.deploy_heat = data.get("deploy_heat", False)
+        msg.deploy_sensors = data.get("deploy_sensors", False)
+        self.publisher.publish(msg)
+
+# Initialize Science Feedback Subscriber
+science_feedback_node = ScienceFeedbackSubscriber()
+ros_manager.add_node(science_feedback_node)
+
+# Initialize Science Control Publisher
+science_control_node = ScienceControlPublisher()
+ros_manager.add_node(science_control_node)
+
+
+def get_science_feedback(request):
+    """Retrieve the latest science feedback data."""
+    if science_feedback_node.latest_feedback:
+        return JsonResponse(science_feedback_node.latest_feedback)
+    return JsonResponse({"error": "No science feedback available"}, status=204)
+
+
+@csrf_exempt
+def set_science_control(request):
+    """Set science control settings via a ROS2 publisher."""
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            science_control_node.publish_control(data)
+            return JsonResponse({"status": "success", "message": "Science control command sent!"})
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON"}, status=400)
+    
+    return JsonResponse({"error": "Invalid request method"}, status=405)
