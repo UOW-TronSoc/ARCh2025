@@ -1,0 +1,58 @@
+/* LogsPage.css */
+.logs-container {
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  margin: 40px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.logs-title {
+  font-size: 2rem;
+  color: #ff5722;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.save-button {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: block;
+  margin: 0 auto 20px;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #e64a19;
+}
+
+.logs-display {
+  background-color: #2e2e2e;
+  padding: 15px;
+  border-radius: 5px;
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #444;
+}
+
+.log-entry {
+  background-color: #333;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  border-left: 4px solid #ff5722;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.no-logs {
+  color: #888;
+  text-align: center;
+  font-style: italic;
+}

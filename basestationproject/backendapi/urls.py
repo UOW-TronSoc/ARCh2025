@@ -33,6 +33,8 @@ urlpatterns = [
     path('science-feedback/', views.get_science_feedback, name='science-feedback'),
     path('science-control/', views.set_science_control, name='science-control'),
 
+    path('logs/', views.get_rover_logs, name='get_rover_logs'),
+
 
 
 ]

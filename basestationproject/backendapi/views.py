@@ -16,6 +16,8 @@ from rclpy.node import Node
 from rclpy.executors import MultiThreadedExecutor
 from sensor_msgs.msg import Image
 from custom_msgs.msg import DrivetrainFeedback, ScienceFeedback, ScienceControl
+from std_msgs.msg import String
+
 
 # Third-party Imports
 import cv2
@@ -314,3 +316,31 @@ def set_science_control(request):
             return JsonResponse({"error": "Invalid JSON"}, status=400)
     
     return JsonResponse({"error": "Invalid request method"}, status=405)
+
+
+class RoverLogsSubscriber(Node):
+    """Subscriber for the Rover_Logs topic."""
+    def __init__(self):
+        super().__init__('rover_logs_subscriber')
+        self.subscription = self.create_subscription(
+            String, 'rover_logs', self.log_callback, 10
+        )
+        self.latest_logs = []
+
+    def log_callback(self, msg):
+        """Store received log messages."""
+        log_message = msg.data
+        self.latest_logs.append(log_message)
+        self.get_logger().info(f"Received log: {log_message}")
+
+# Initialize the log subscriber and add to ROS2 Manager
+rover_logs_node = RoverLogsSubscriber()
+ros_manager.add_node(rover_logs_node)
+
+# Django API Endpoint to Fetch Logs
+def get_rover_logs(request):
+    """Retrieve logs from the Rover_Logs topic."""
+    if rover_logs_node.latest_logs:
+        return JsonResponse({"logs": rover_logs_node.latest_logs})
+    
+    return JsonResponse({"logs": [], "message": "No logs received yet."}, status=204)

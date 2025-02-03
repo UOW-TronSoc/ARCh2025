@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./styles.css"; // Ensure you include the CSS file
+import "./styles.css";
 
 const JoystickControl = () => {
   const [leftDrive, setLeftDrive] = useState(0);
@@ -18,6 +18,7 @@ const JoystickControl = () => {
 
   // Fetch drivetrain feedback from the Django API
   useEffect(() => {
+    document.title = "Drive Control Rover"
     const fetchDrivetrainFeedback = async () => {
       try {
         const response = await axios.get("http://127.0.0.1:8000/api/drivetrain-feedback/");
@@ -46,29 +47,29 @@ const JoystickControl = () => {
   };
 
   // Dedicated effect for left joystick
-  useEffect(() => {
-    const handleLeftJoystickInput = () => {
-      const gamepads = navigator.getGamepads();
-      const gamepad = gamepads[0]; // Use the first connected gamepad
+  // useEffect(() => {
+  //   const handleLeftJoystickInput = () => {
+  //     const gamepads = navigator.getGamepads();
+  //     const gamepad = gamepads[0]; // Use the first connected gamepad
 
-      if (gamepad) {
-        // Update left joystick state
-        const leftStickX = Math.round(gamepad.axes[0] * 100); // Left/right on left stick
-        const leftStickY = Math.round(gamepad.axes[1] * 100); // Up/down on left stick
-        setLeftJoystick({ x: leftStickX, y: leftStickY });
+  //     if (gamepad) {
+  //       // Update left joystick state
+  //       const leftStickX = Math.round(gamepad.axes[0] * 100); // Left/right on left stick
+  //       const leftStickY = Math.round(gamepad.axes[1] * 100); // Up/down on left stick
+  //       setLeftJoystick({ x: leftStickX, y: leftStickY });
 
-        // Map Y-axis of left stick to leftDrive
-        const newLeftDrive = Math.round(gamepad.axes[1] * -100);
-        if (newLeftDrive !== leftDrive) {
-          setLeftDrive(newLeftDrive);
-          sendCommand(newLeftDrive, rightDrive);
-        }
-      }
-    };
+  //       // Map Y-axis of left stick to leftDrive
+  //       const newLeftDrive = Math.round(gamepad.axes[1] * -100);
+  //       if (newLeftDrive !== leftDrive) {
+  //         setLeftDrive(newLeftDrive);
+  //         sendCommand(newLeftDrive, rightDrive);
+  //       }
+  //     }
+  //   };
 
-    const interval = setInterval(handleLeftJoystickInput, 50); // Polling every 50ms
-    return () => clearInterval(interval);
-  }, [leftDrive, rightDrive]);
+  //   const interval = setInterval(handleLeftJoystickInput, 50); // Polling every 50ms
+  //   return () => clearInterval(interval);
+  // }, [leftDrive, rightDrive]);
 
   // Dedicated effect for right joystick
   useEffect(() => {
@@ -82,12 +83,24 @@ const JoystickControl = () => {
         const rightStickY = Math.round(gamepad.axes[3] * 100);
         setRightJoystick({ x: rightStickX, y: rightStickY });
 
+        const leftStickX = Math.round(gamepad.axes[0] * 100); // Left/right on left stick
+        const leftStickY = Math.round(gamepad.axes[1] * 100); // Up/down on left stick
+        setLeftJoystick({ x: leftStickX, y: leftStickY });
+
         // Map Y-axis of right stick to rightDrive
         const newRightDrive = Math.round(gamepad.axes[3] * -100);
-        if (newRightDrive !== rightDrive) {
-          setRightDrive(newRightDrive);
-          sendCommand(leftDrive, newRightDrive);
-        }
+        const newLeftDrive = Math.round(gamepad.axes[1] * -100);
+        // if (newRightDrive !== rightDrive) {
+        //   setRightDrive(newRightDrive);
+        //   sendCommand(leftDrive, newRightDrive);
+        // }
+
+        // if (newLeftDrive !== leftDrive) {
+        //   setLeftDrive(newLeftDrive);
+        //   sendCommand(newLeftDrive, rightDrive);
+        // }
+
+        sendCommand(newLeftDrive, newRightDrive)
       }
     };
 
@@ -127,7 +140,7 @@ const JoystickControl = () => {
       </div>
 
       {/* Drivetrain Feedback Section */}
-      <div className="feedback-section">
+      <div className="feedback-section mt-4 pt-2">
         <h2>Drivetrain Feedback</h2>
         {drivetrainFeedback.epoch_time ? (
           <div>
@@ -137,7 +150,13 @@ const JoystickControl = () => {
             <p><strong>Wheel Torques:</strong> {drivetrainFeedback.wheel_torque.join(", ")}</p>
           </div>
         ) : (
-          <p>Loading drivetrain feedback...</p>
+          
+          <div>
+            <p><strong>Timestamp:</strong> N/A</p>
+            <p><strong>Wheel Positions:</strong> N/A</p>
+            <p><strong>Wheel Velocities:</strong> N/A</p>
+            <p><strong>Wheel Torques:</strong> N/A</p>
+          </div>
         )}
       </div>
     </div>

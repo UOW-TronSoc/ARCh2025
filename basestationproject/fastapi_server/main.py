@@ -50,8 +50,10 @@ class ROS2Client:
           if not (-128 <= right_drive <= 127):
               raise ValueError(f"right_drive value {right_drive} is out of range for int8")
 
-          msg.left_drive = left_drive
-          msg.right_drive = right_drive
+          msg.lf_drive = left_drive
+          msg.lb_drive = left_drive
+          msg.rb_drive = right_drive
+          msg.rf_drive = right_drive
 
           # Debug logs
           """self.node.get_logger().info(
@@ -72,9 +74,7 @@ ros2_client = ROS2Client()
 
 @app.post("/command")
 async def handle_command(command: DriveCommand):
-    """
-    Endpoint to handle joystick drive commands sent from the frontend.
-    """
+    # Endpoint to handle joystick drive commands sent from the frontend.
     try:
         # Extract validated data from the Pydantic model
         left_drive = command.left_drive

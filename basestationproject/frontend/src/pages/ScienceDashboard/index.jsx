@@ -19,6 +19,7 @@ const ScienceDashboard = () => {
 
   // Fetch Science Feedback
   useEffect(() => {
+    document.title = "Science Dashboard"
     const fetchScienceFeedback = async () => {
       try {
         const response = await axios.get("http://127.0.0.1:8000/api/science-feedback/");
@@ -53,7 +54,8 @@ const ScienceDashboard = () => {
         <h2>Live Science Feedback</h2>
         <p><strong>Water Percentage:</strong> {Math.round(scienceData.water_percent * 100)/100}%</p>
         <p><strong>Temperature:</strong> {Math.round(scienceData.temperature * 100)/100}°C</p>
-        <p><strong>Ilmenite Percentage:</strong> {Math.round(scienceData.ilmenite_percent * 100)/100}%</p>
+        {/* <p><strong>Ilmenite Percentage:</strong> {Math.round(scienceData.ilmenite_percent * 100)/100}%</p> */}
+        <p><strong>Ilmenite Percentage:</strong>  N/A</p>
       </div>
 
       {/* Science Control Section */}

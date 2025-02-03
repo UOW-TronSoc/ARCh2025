@@ -77,3 +77,4 @@ yarn-error.log*
 # Production-related files
 /build
 node_modules/
+*.code-workspace

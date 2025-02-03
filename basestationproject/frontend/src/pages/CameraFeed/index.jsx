@@ -7,6 +7,7 @@ const CameraFeed = () => {
   const [imageSrcs, setImageSrcs] = useState(["", "", "", ""]);
 
   useEffect(() => {
+    document.title = "Camera Feed"
     const intervals = activeCameras.map((isActive, index) => {
       if (isActive) {
         return setInterval(() => {
