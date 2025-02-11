@@ -1,23 +1,31 @@
 :root {
   --primary-clr: #1e1e1e;
-  --secondary-clr: #ddd
+  --off-white: #ddd;
   --accent-clr: rgb(9, 24, 90);
 }
-.feedback-section {
-  color: #fff;
-}
-/* Center the entire container vertically and horizontally */
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh; /* Full viewport height */
-  text-align: center;
-  background-color: var(--secondary-clr);
+
+/* General Body Styling */
+body {
+  background-color: var(--primary-clr) !important;
+  color: var(--off-white) !important;
 }
 
-/* Display the joysticks side by side */
+/* Header Styling */
+.header {
+  color: var(--off-white);
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Drive Values Section */
+.drive-values p {
+  margin: 5px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--primary-clr);
+}
+
+/* Joysticks Container */
 .joysticks {
   display: flex;
   justify-content: center;
@@ -25,45 +33,75 @@
   margin-top: 20px;
 }
 
-/* Joystick container styles */
+/* Joystick Container Styles */
 .joystick-container {
   position: relative;
   height: 200px;
   width: 200px;
   border: 4px solid gray;
-  border-radius: 50%; 
-  background-color: var(--secondary-clr);
+  border-radius: 50%;
+  background-color: var(--off-white);
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow for depth */
+  transition: background-color 0.3s ease;
 }
 
-/* Joystick knob styles */
+/* Joystick Knob Styles */
 .joystick-knob {
   position: absolute;
   height: 40px; /* Diameter of the knob */
-  width: 40px; /* Diameter of the knob */
+  width: 40px;  /* Diameter of the knob */
   background-color: var(--primary-clr);
   border-radius: 50%;
   box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.3); /* Add some depth */
   transition: transform 0.05s linear; /* Smooth movement */
 }
 
-/* Drive values section */
-.drive-values p {
-  margin: 5px 0;
-  font-size: 18px;
+/* Drivetrain Feedback Section */
+.feedback-section {
+  color: #fff;
+  background-color: var(--accent-clr);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Card Styling Overrides */
+.card {
+  background-color: #f8f9fa; /* Light background for contrast */
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
   font-weight: bold;
-  color: #1e1e1e;
+  letter-spacing: 1px;
 }
 
-.header {
-  color: #1e1e1e;
-
+/* Hover Effect for Joystick Container */
+.joystick-container:hover {
+  background-color: #cfd8dc; /* Light hover effect */
+  cursor: pointer;
 }
-body {
-  background-color: #fff !important;
-  color: #1e1e1e !important;
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .joysticks {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .joystick-container {
+    height: 150px;
+    width: 150px;
+  }
+
+  .joystick-knob {
+    height: 30px;
+    width: 30px;
+  }
 }

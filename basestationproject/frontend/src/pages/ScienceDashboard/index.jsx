@@ -45,10 +45,10 @@ const ScienceDashboard = () => {
 
   return (
     <div className="container mt-1 mb-4">
-      <h1 className="text-center mb-4">Science Dashboard</h1>
+      <h1 className="text-center mb-4 text-white">Science Dasπhboard</h1>
 
       {/* Science Feedback Section */}
-      <div className="card mb-4 col-6">
+      <div className="container card mb-4 col-lg-6 col-md-8">
         <div className="card-header bg-primary text-white">
           <h2 className="h5 mb-0">Live Science Feedback</h2>
         </div>
@@ -60,7 +60,7 @@ const ScienceDashboard = () => {
       </div>
 
       {/* Science Control Section */}
-      <div className="card col-6">
+      <div className="container card col-lg-6 col-md-8 mx-auto">
         <div className="card-header bg-secondary text-white">
           <h2 className="h5 mb-0">Science Control</h2>
         </div>
@@ -72,9 +72,9 @@ const ScienceDashboard = () => {
             { label: "Deploy Heat", key: "deploy_heat" },
             { label: "Deploy Sensors", key: "deploy_sensors" },
           ].map((item) => (
-            <div className="form-check mb-2" key={item.key}>
+            <div className="form-check d-flex align-items-center mb-2" key={item.key}>
               <input
-                className="form-check-input"
+                className="form-check-input me-2"
                 type="checkbox"
                 checked={controlState[item.key]}
                 onChange={() => setControlState({ ...controlState, [item.key]: !controlState[item.key] })}

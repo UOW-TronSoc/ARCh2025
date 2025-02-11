@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import "./styles.css"; // Ensure this CSS file is created and used
+import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap
 
 const LogsPage = () => {
   const [logs, setLogs] = useState([]);
-  const logsEndRef = useRef(null); // Reference to the bottom of the logs container
+  const logsContainerRef = useRef(null); // Reference to the logs container
+  const [isAutoScrollEnabled, setIsAutoScrollEnabled] = useState(true); // Track if auto-scroll is active
 
   useEffect(() => {
-    document.title = "Logs"
+    document.title = "Logs";
     const fetchLogs = async () => {
       try {
         const response = await axios.get("http://127.0.0.1:8000/api/logs/");
@@ -22,12 +23,19 @@ const LogsPage = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Auto-scroll to the bottom when logs update
+  // Auto-scroll to the bottom when logs update (if auto-scroll is enabled)
   useEffect(() => {
-    if (logsEndRef.current) {
-      logsEndRef.current.scrollIntoView({ behavior: "smooth" });
+    if (isAutoScrollEnabled && logsContainerRef.current) {
+      logsContainerRef.current.scrollTop = logsContainerRef.current.scrollHeight;
     }
-  }, [logs]);
+  }, [logs, isAutoScrollEnabled]);
+
+  // Detect user's scroll position
+  const handleScroll = () => {
+    const { scrollTop, scrollHeight, clientHeight } = logsContainerRef.current;
+    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10; // 10px threshold
+    setIsAutoScrollEnabled(isAtBottom); // Enable auto-scroll only if the user is near the bottom
+  };
 
   const saveLogsToFile = () => {
     const logContent = logs.join("\n");
@@ -39,19 +47,43 @@ const LogsPage = () => {
   };
 
   return (
-    <div className="logs-container">
-      <h1 className="logs-title">Command Logs</h1>
-      <button onClick={saveLogsToFile} className="save-button">Save Logs</button>
-      <div className="logs-display">
-        {logs.length === 0 ? (
-          <p className="no-logs">No logs available...</p>
-        ) : (
-          logs.map((log, index) => (
-            <p key={index} className="log-entry">{log}</p>
-          ))
-        )}
-        {/* Invisible div to scroll into view */}
-        <div ref={logsEndRef} />
+    <div className="container mt-1 mb-4">
+      <h1 className="text-center mb-4 text-white">Command Logs</h1>
+
+      {/* Logs Display Section */}
+      <div className="container card mb-4 col-lg-6 col-md-8 mx-auto">
+        <div className="card-header bg-primary text-white text-center">
+          <h2 className="h5 mb-0">Live Command Logs</h2>
+        </div>
+        <div
+          className="card-body bg-light border rounded overflow-auto"
+          style={{ maxHeight: "400px" }}
+          ref={logsContainerRef}
+          onScroll={handleScroll}
+        >
+          {logs.length === 0 ? (
+            <p className="text-muted text-center fst-italic">
+              No logs available...
+            </p>
+          ) : (
+            logs.map((log, index) => (
+              <div
+                key={index}
+                className="border-start border-4 border-warning bg-dark text-white p-2 mb-2 rounded"
+                style={{ fontFamily: "Courier New, monospace" }}
+              >
+                {log}
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+
+      {/* Save Logs Button */}
+      <div className="text-center">
+        <button onClick={saveLogsToFile} className="btn btn-success mt-2">
+          Save Logs
+        </button>
       </div>
     </div>
   );
