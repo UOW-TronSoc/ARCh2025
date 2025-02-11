@@ -192,7 +192,7 @@ def initialize_cameras():
 
 
 camera_nodes = initialize_cameras()
-
+    
 
 def get_frame(request, camera_id):
     """Serve a single frame from a specific camera."""

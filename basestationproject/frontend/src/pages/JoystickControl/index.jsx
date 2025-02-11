@@ -91,12 +91,12 @@ const JoystickControl = () => {
         const newRightDrive = Math.round(gamepad.axes[3] * -100);
         const newLeftDrive = Math.round(gamepad.axes[1] * -100);
         // if (newRightDrive !== rightDrive) {
-        //   setRightDrive(newRightDrive);
+        setRightDrive(newRightDrive);
         //   sendCommand(leftDrive, newRightDrive);
         // }
 
         // if (newLeftDrive !== leftDrive) {
-        //   setLeftDrive(newLeftDrive);
+        setLeftDrive(newLeftDrive);
         //   sendCommand(newLeftDrive, rightDrive);
         // }
 

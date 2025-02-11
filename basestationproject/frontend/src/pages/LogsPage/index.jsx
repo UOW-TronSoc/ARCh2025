@@ -40,7 +40,7 @@ const LogsPage = () => {
 
   return (
     <div className="logs-container">
-      <h1 className="logs-title">Rover Logs</h1>
+      <h1 className="logs-title">Command Logs</h1>
       <button onClick={saveLogsToFile} className="save-button">Save Logs</button>
       <div className="logs-display">
         {logs.length === 0 ? (
