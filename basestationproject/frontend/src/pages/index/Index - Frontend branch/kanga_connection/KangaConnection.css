@@ -1,0 +1,56 @@
+/* Kanga Connection Section */
+.kanga-connection{
+    background-color: #333;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  
+  .connect-buttons {
+    text-align: right;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  
+  .kanga-connection button{
+    margin: 1rem 1;
+    cursor: pointer;
+  }
+  
+  .connect-btn {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+  }
+  
+  .connect-btn:hover {
+    background-color: #208237;
+  }
+  
+  .disconnect-btn {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    margin-left: 1rem;
+  }
+  
+  .disconnect-btn:hover {
+    background-color: #9c2631;
+  }
+  
+  .elipsis-btn {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 1rem 1rem;
+    border-radius: 10px;
+  }

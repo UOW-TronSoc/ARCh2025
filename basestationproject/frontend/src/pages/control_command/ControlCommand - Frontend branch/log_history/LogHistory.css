@@ -1,0 +1,19 @@
+.log-history {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+  }
+
+.log-content {
+    flex: 1;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #222;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #444;
+}
+
+.download-btn {
+    width: 100%;
+    max-width: 200px;
+  }
