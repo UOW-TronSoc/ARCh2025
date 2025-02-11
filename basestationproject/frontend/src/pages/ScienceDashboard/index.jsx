@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./styles.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const ScienceDashboard = () => {
   const [scienceData, setScienceData] = useState({
@@ -17,9 +17,8 @@ const ScienceDashboard = () => {
     deploy_sensors: false,
   });
 
-  // Fetch Science Feedback
   useEffect(() => {
-    document.title = "Science Dashboard"
+    document.title = "Science Dashboard";
     const fetchScienceFeedback = async () => {
       try {
         const response = await axios.get("http://127.0.0.1:8000/api/science-feedback/");
@@ -29,11 +28,10 @@ const ScienceDashboard = () => {
       }
     };
 
-    const interval = setInterval(fetchScienceFeedback, 1000); // Auto-refresh every second
+    const interval = setInterval(fetchScienceFeedback, 1000);
     return () => clearInterval(interval);
   }, []);
 
-  // Send Science Control Command
   const sendControlCommand = async () => {
     try {
       await axios.post("http://127.0.0.1:8000/api/science-control/", controlState, {
@@ -46,69 +44,52 @@ const ScienceDashboard = () => {
   };
 
   return (
-    <div className="science-container">
-      <h1 className="header">Science Dashboard</h1>
+    <div className="container mt-1 mb-4">
+      <h1 className="text-center mb-4">Science Dashboard</h1>
 
       {/* Science Feedback Section */}
-      <div className="science-feedback">
-        <h2>Live Science Feedback</h2>
-        <p><strong>Water Percentage:</strong> {Math.round(scienceData.water_percent * 100)/100}%</p>
-        <p><strong>Temperature:</strong> {Math.round(scienceData.temperature * 100)/100}°C</p>
-        {/* <p><strong>Ilmenite Percentage:</strong> {Math.round(scienceData.ilmenite_percent * 100)/100}%</p> */}
-        <p><strong>Ilmenite Percentage:</strong>  N/A</p>
+      <div className="card mb-4 col-6">
+        <div className="card-header bg-primary text-white">
+          <h2 className="h5 mb-0">Live Science Feedback</h2>
+        </div>
+        <div className="card-body">
+          <p><strong>Water Percentage:</strong> {Math.round(scienceData.water_percent * 100) / 100}%</p>
+          <p><strong>Temperature:</strong> {Math.round(scienceData.temperature * 100) / 100}°C</p>
+          <p><strong>Ilmenite Percentage:</strong> N/A</p>
+        </div>
       </div>
 
       {/* Science Control Section */}
-      <div className="science-control">
-        <h2>Science Control</h2>
-        <label>
-          <input
-            type="checkbox"
-            checked={controlState.heat_status}
-            onChange={() => setControlState({ ...controlState, heat_status: !controlState.heat_status })}
-          />
-          Heat Status
-        </label>
+      <div className="card col-6">
+        <div className="card-header bg-secondary text-white">
+          <h2 className="h5 mb-0">Science Control</h2>
+        </div>
+        <div className="card-body">
+          {[
+            { label: "Heat Status", key: "heat_status" },
+            { label: "Water Status", key: "water_status" },
+            { label: "Ilmenite Status", key: "ilmenite_status" },
+            { label: "Deploy Heat", key: "deploy_heat" },
+            { label: "Deploy Sensors", key: "deploy_sensors" },
+          ].map((item) => (
+            <div className="form-check mb-2" key={item.key}>
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={controlState[item.key]}
+                onChange={() => setControlState({ ...controlState, [item.key]: !controlState[item.key] })}
+                id={item.key}
+              />
+              <label className="form-check-label" htmlFor={item.key}>
+                {item.label}
+              </label>
+            </div>
+          ))}
 
-        <label>
-          <input
-            type="checkbox"
-            checked={controlState.water_status}
-            onChange={() => setControlState({ ...controlState, water_status: !controlState.water_status })}
-          />
-          Water Status
-        </label>
-
-        <label>
-          <input
-            type="checkbox"
-            checked={controlState.ilmenite_status}
-            onChange={() => setControlState({ ...controlState, ilmenite_status: !controlState.ilmenite_status })}
-          />
-          Ilmenite Status
-        </label>
-
-        <label>
-          <input
-            type="checkbox"
-            checked={controlState.deploy_heat}
-            onChange={() => setControlState({ ...controlState, deploy_heat: !controlState.deploy_heat })}
-          />
-          Deploy Heat
-        </label>
-
-        <label>
-          <input
-            type="checkbox"
-            checked={controlState.deploy_sensors}
-            onChange={() => setControlState({ ...controlState, deploy_sensors: !controlState.deploy_sensors })}
-          />
-          Deploy Sensors
-        </label>
-
-        <button onClick={sendControlCommand} className="send-button">
-          Send Control Command
-        </button>
+          <button onClick={sendControlCommand} className="btn btn-success mt-3">
+            Send Control Command
+          </button>
+        </div>
       </div>
     </div>
   );
