@@ -7,7 +7,7 @@ const ConnectionBar = () => {
 
   const handleConnect = async () => {
     try {
-      await axios.post("http://localhost:8000/api/connect");
+      await axios.post("http://django_server:8000/api/connect");
       setConnected(true);
     } catch (error) {
       console.error("Error connecting:", error);
@@ -16,7 +16,7 @@ const ConnectionBar = () => {
 
   const handleDisconnect = async () => {
     try {
-      await axios.post("http://localhost:8000/api/disconnect");
+      await axios.post("http://django_server:8000/api/disconnect");
       setConnected(false);
     } catch (error) {
       console.error("Error disconnecting:", error);

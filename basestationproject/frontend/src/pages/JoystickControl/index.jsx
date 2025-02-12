@@ -22,7 +22,7 @@ const JoystickControl = () => {
     document.title = "Drive Control Rover";
     const fetchDrivetrainFeedback = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/drivetrain-feedback/");
+        const response = await axios.get("http://django_server:8000/api/drivetrain-feedback/");
         setDrivetrainFeedback(response.data);
       } catch (error) {
         console.error("Failed to fetch drivetrain feedback:", error.response?.data || error.message);
@@ -38,7 +38,7 @@ const JoystickControl = () => {
     const command = { left_drive: leftDrive, right_drive: rightDrive };
 
     try {
-      const response = await axios.post("http://127.0.0.1:8080/command", command, {
+      const response = await axios.post("http://fastapi_server:8080/command", command, {
         headers: { "Content-Type": "application/json" },
       });
       console.log("Command sent:", response.data);

@@ -15,8 +15,8 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const [deviceResponse, specResponse] = await Promise.all([
-          axios.get("http://127.0.0.1:8000/api/devices"),
-          axios.get("http://127.0.0.1:8000/api/specs"),
+          axios.get("http://django_server:8000/api/devices"),
+          axios.get("http://django_server:8000/api/specs"),
         ]);
   
         console.log("Device Data:", deviceResponse.data); // Debugging

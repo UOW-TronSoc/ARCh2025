@@ -1,0 +1,20 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from custom_msgs/msg/DrivetrainControl.msg
+// generated code does not contain a copyright notice
+
+
+module custom_msgs {
+  module msg {
+    struct DrivetrainControl {
+      int64 epoch_time;
+
+      int8 lf_drive;
+
+      int8 lb_drive;
+
+      int8 rb_drive;
+
+      int8 rf_drive;
+    };
+  };
+};

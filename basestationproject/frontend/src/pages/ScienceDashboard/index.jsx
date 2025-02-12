@@ -21,7 +21,7 @@ const ScienceDashboard = () => {
     document.title = "Science Dashboard";
     const fetchScienceFeedback = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/science-feedback/");
+        const response = await axios.get("http://django_server:8000/api/science-feedback/");
         setScienceData(response.data);
       } catch (error) {
         console.error("Failed to fetch science feedback:", error.response?.data || error.message);
@@ -34,7 +34,7 @@ const ScienceDashboard = () => {
 
   const sendControlCommand = async () => {
     try {
-      await axios.post("http://127.0.0.1:8000/api/science-control/", controlState, {
+      await axios.post("http://django_server:8000/api/science-control/", controlState, {
         headers: { "Content-Type": "application/json" },
       });
       console.log("Control command sent successfully!");

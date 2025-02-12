@@ -11,7 +11,7 @@ const LogsPage = () => {
     document.title = "Logs";
     const fetchLogs = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/logs/");
+        const response = await axios.get("http://django_server:8000/api/logs/");
         setLogs(response.data.logs || []);
       } catch (error) {
         console.error("Error fetching logs:", error);

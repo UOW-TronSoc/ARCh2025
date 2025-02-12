@@ -1,0 +1,4 @@
+Invoking command in '/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/build/custom_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/build/custom_msgs -- -j16 -l16
+Invoked command in '/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/build/custom_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/build/custom_msgs -- -j16 -l16
+Invoking command in '/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/build/custom_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/build/custom_msgs
+Invoked command in '/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/build/custom_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/build/custom_msgs

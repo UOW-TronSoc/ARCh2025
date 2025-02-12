@@ -1,0 +1,8 @@
+msg/DrivetrainControl.idl
+msg/DrivetrainControl.msg
+msg/DrivetrainFeedback.idl
+msg/DrivetrainFeedback.msg
+msg/ScienceControl.idl
+msg/ScienceControl.msg
+msg/ScienceFeedback.idl
+msg/ScienceFeedback.msg

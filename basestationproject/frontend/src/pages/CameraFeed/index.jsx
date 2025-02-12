@@ -13,7 +13,7 @@ const CameraFeed = () => {
         return setInterval(() => {
           setImageSrcs((prevSrcs) => {
             const newSrcs = [...prevSrcs];
-            newSrcs[index] = `http://localhost:8000/api/video_feed/${index}/?time=${new Date().getTime()}`;
+            newSrcs[index] = `http://django_server:8000/api/video_feed/${index}/?time=${new Date().getTime()}`;
             return newSrcs;
           });
         }, 100); // Refresh every 100ms

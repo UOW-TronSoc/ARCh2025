@@ -10,7 +10,7 @@ function LogHistory() {
   // Fetch logs from the backend when teh component mounts
   useEffect(() => {
     // Fetch with your actual API endpoint
-    fetch('http://localhost:5000/api/logs')
+    fetch('http://django_server:5000/api/logs')
       .then(response => response.json())
       .then(data => {
         setLogs(data); // Set logs to state

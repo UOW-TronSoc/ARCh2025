@@ -1,0 +1,326 @@
+[0.007s] Invoking command in '/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/build/custom_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/build/custom_msgs -- -j16 -l16
+[0.025s] -- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.106s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[0.107s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.110s] -- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.138s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.192s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter Development Development.Module Development.Embed 
+[0.230s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.359s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[0.485s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.649s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.664s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[0.680s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.680s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[0.680s] -- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so
+[0.689s] -- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[0.698s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.700s] -- Added test 'lint_cmake' to check CMake code style
+[0.701s] -- Added test 'xmllint' to check XML markup files
+[0.702s] -- Configuring done
+[0.731s] -- Generating done
+[0.739s] -- Build files have been written to: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/build/custom_msgs
+[0.756s] [  1%] [34m[1mGenerating C code for ROS interfaces[0m
+[0.762s] [  3%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[0.771s] [  3%] Built target ament_cmake_python_copy_custom_msgs
+[0.925s] running egg_info
+[0.925s] writing custom_msgs.egg-info/PKG-INFO
+[0.925s] writing dependency_links to custom_msgs.egg-info/dependency_links.txt
+[0.926s] writing top-level names to custom_msgs.egg-info/top_level.txt
+[0.927s] reading manifest file 'custom_msgs.egg-info/SOURCES.txt'
+[0.927s] writing manifest file 'custom_msgs.egg-info/SOURCES.txt'
+[0.946s] [  3%] Built target ament_cmake_python_build_custom_msgs_egg
+[1.007s] [  3%] Built target custom_msgs__cpp
+[1.012s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_generator_c[0m
+[1.014s] [  5%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[1.014s] [  7%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[1.015s] [  9%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[1.021s] [ 14%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/science_feedback__functions.c.o[0m
+[1.021s] [ 14%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/drivetrain_feedback__functions.c.o[0m
+[1.021s] [ 14%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/drivetrain_control__functions.c.o[0m
+[1.021s] [ 16%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/science_control__functions.c.o[0m
+[1.054s] [ 18%] [32m[1mLinking C shared library libcustom_msgs__rosidl_generator_c.so[0m
+[1.081s] [ 18%] Built target custom_msgs__rosidl_generator_c
+[1.089s] [ 21%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[1.089s] [ 21%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[1.089s] [ 23%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[1.197s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_cpp[0m
+[1.209s] [ 29%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/drivetrain_control__type_support.cpp.o[0m
+[1.209s] [ 29%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/science_feedback__type_support.cpp.o[0m
+[1.209s] [ 29%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/drivetrain_feedback__type_support.cpp.o[0m
+[1.211s] [ 30%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/science_control__type_support.cpp.o[0m
+[1.228s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_introspection_cpp[0m
+[1.242s] [ 36%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/drivetrain_feedback__type_support.cpp.o[0m
+[1.243s] [ 36%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/drivetrain_control__type_support.cpp.o[0m
+[1.243s] [ 36%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/science_feedback__type_support.cpp.o[0m
+[1.243s] [ 38%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/science_control__type_support.cpp.o[0m
+[1.284s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_fastrtps_cpp[0m
+[1.297s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_c[0m
+[1.298s] [ 40%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/drivetrain_control__type_support.cpp.o[0m
+[1.299s] [ 41%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/science_feedback__type_support.cpp.o[0m
+[1.299s] [ 43%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/drivetrain_feedback__type_support.cpp.o[0m
+[1.303s] [ 45%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/science_control__type_support.cpp.o[0m
+[1.311s] [ 47%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/drivetrain_control__type_support.cpp.o[0m
+[1.312s] [ 49%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/drivetrain_feedback__type_support.cpp.o[0m
+[1.346s] [ 50%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/science_feedback__type_support.cpp.o[0m
+[1.350s] [ 52%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/science_control__type_support.cpp.o[0m
+[1.386s] [ 54%] [32m[1mLinking CXX shared library libcustom_msgs__rosidl_typesupport_c.so[0m
+[1.426s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_introspection_c[0m
+[1.429s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_fastrtps_c[0m
+[1.448s] [ 56%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/drivetrain_control__type_support.c.o[0m
+[1.448s] [ 56%] Built target custom_msgs__rosidl_typesupport_c
+[1.448s] [ 58%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/drivetrain_feedback__type_support.c.o[0m
+[1.455s] [ 60%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/drivetrain_control__type_support_c.cpp.o[0m
+[1.458s] [ 61%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/science_feedback__type_support.c.o[0m
+[1.493s] [ 63%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/science_control__type_support.c.o[0m
+[1.493s] [ 65%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/drivetrain_feedback__type_support_c.cpp.o[0m
+[1.495s] [ 67%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/science_feedback__type_support_c.cpp.o[0m
+[1.501s] [ 69%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/science_control__type_support_c.cpp.o[0m
+[1.513s] [ 70%] [32m[1mLinking CXX shared library libcustom_msgs__rosidl_typesupport_cpp.so[0m
+[1.534s] [ 72%] [32m[1mLinking C shared library libcustom_msgs__rosidl_typesupport_introspection_c.so[0m
+[1.565s] [ 72%] Built target custom_msgs__rosidl_typesupport_cpp
+[1.574s] [ 72%] Built target custom_msgs__rosidl_typesupport_introspection_c
+[1.657s] [ 74%] [32m[1mLinking CXX shared library libcustom_msgs__rosidl_typesupport_introspection_cpp.so[0m
+[1.711s] [ 74%] Built target custom_msgs__rosidl_typesupport_introspection_cpp
+[1.721s] [ 76%] [32m[1mLinking CXX shared library libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so[0m
+[1.773s] [ 76%] Built target custom_msgs__rosidl_typesupport_fastrtps_cpp
+[1.780s] [ 78%] [32m[1mLinking CXX shared library libcustom_msgs__rosidl_typesupport_fastrtps_c.so[0m
+[1.830s] [ 78%] Built target custom_msgs__rosidl_typesupport_fastrtps_c
+[1.844s] [ 78%] Built target custom_msgs
+[1.857s] [ 80%] [34m[1mGenerating Python code for ROS interfaces[0m
+[2.190s] [ 80%] Built target custom_msgs__py
+[2.197s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_generator_py[0m
+[2.208s] [ 81%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_drivetrain_control_s.c.o[0m
+[2.208s] [ 83%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_drivetrain_feedback_s.c.o[0m
+[2.208s] [ 85%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_science_feedback_s.c.o[0m
+[2.209s] [ 87%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_science_control_s.c.o[0m
+[2.278s] [ 89%] [32m[1mLinking C shared library rosidl_generator_py/custom_msgs/libcustom_msgs__rosidl_generator_py.so[0m
+[2.305s] [ 89%] Built target custom_msgs__rosidl_generator_py
+[2.312s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_fastrtps_c__pyext[0m
+[2.312s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_c__pyext[0m
+[2.312s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_introspection_c__pyext[0m
+[2.321s] [ 90%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_c.c.o[0m
+[2.321s] [ 92%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[2.321s] [ 94%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[2.387s] [ 98%] [32m[1mLinking C shared library rosidl_generator_py/custom_msgs/custom_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so[0m
+[2.387s] [ 98%] [32m[1mLinking C shared library rosidl_generator_py/custom_msgs/custom_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so[0m
+[2.387s] [100%] [32m[1mLinking C shared library rosidl_generator_py/custom_msgs/custom_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so[0m
+[2.410s] [100%] Built target custom_msgs__rosidl_typesupport_c__pyext
+[2.410s] [100%] Built target custom_msgs__rosidl_typesupport_introspection_c__pyext
+[2.411s] [100%] Built target custom_msgs__rosidl_typesupport_fastrtps_c__pyext
+[2.420s] Invoked command in '/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/build/custom_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/build/custom_msgs -- -j16 -l16
+[2.427s] Invoking command in '/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/build/custom_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/build/custom_msgs
+[2.432s] -- Install configuration: ""
+[2.432s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/ament_index/resource_index/rosidl_interfaces/custom_msgs
+[2.432s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs
+[2.432s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg
+[2.432s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/rosidl_generator_c__visibility_control.h
+[2.432s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/drivetrain_feedback.h
+[2.432s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail
+[2.433s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_feedback__functions.c
+[2.433s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_control__functions.h
+[2.433s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_feedback__struct.h
+[2.433s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_control__type_support.h
+[2.433s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_feedback__struct.h
+[2.433s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_control__functions.h
+[2.433s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/custom_message__struct.h
+[2.433s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_control__functions.c
+[2.433s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/custom_message__type_support.h
+[2.433s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_control__struct.h
+[2.433s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_control__functions.c
+[2.434s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_feedback__functions.h
+[2.434s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_control__struct.h
+[2.434s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_control__type_support.h
+[2.434s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_feedback__functions.h
+[2.434s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_feedback__type_support.h
+[2.434s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_feedback__functions.c
+[2.434s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/custom_message__functions.c
+[2.434s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/custom_message__functions.h
+[2.434s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_feedback__type_support.h
+[2.435s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/custom_message.h
+[2.435s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/science_feedback.h
+[2.435s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/science_control.h
+[2.435s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/drivetrain_control.h
+[2.435s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/environment/library_path.sh
+[2.435s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/environment/library_path.dsv
+[2.435s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/lib/libcustom_msgs__rosidl_generator_c.so
+[2.436s] -- Set runtime path of "/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/lib/libcustom_msgs__rosidl_generator_c.so" to ""
+[2.436s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs
+[2.436s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg
+[2.436s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[2.436s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail
+[2.436s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_control__rosidl_typesupport_fastrtps_c.h
+[2.436s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_feedback__rosidl_typesupport_fastrtps_c.h
+[2.436s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/custom_message__rosidl_typesupport_fastrtps_c.h
+[2.436s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_control__rosidl_typesupport_fastrtps_c.h
+[2.436s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_feedback__rosidl_typesupport_fastrtps_c.h
+[2.436s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_fastrtps_c.so
+[2.437s] -- Set runtime path of "/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_fastrtps_c.so" to ""
+[2.437s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs
+[2.437s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg
+[2.437s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[2.437s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail
+[2.437s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_control__type_support.c
+[2.437s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_feedback__type_support.c
+[2.437s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/custom_message__type_support.c
+[2.437s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/custom_message__rosidl_typesupport_introspection_c.h
+[2.437s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_feedback__rosidl_typesupport_introspection_c.h
+[2.437s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_control__rosidl_typesupport_introspection_c.h
+[2.437s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_feedback__rosidl_typesupport_introspection_c.h
+[2.437s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_control__type_support.c
+[2.438s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_control__rosidl_typesupport_introspection_c.h
+[2.438s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_feedback__type_support.c
+[2.438s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_introspection_c.so
+[2.438s] -- Set runtime path of "/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_introspection_c.so" to ""
+[2.438s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_c.so
+[2.439s] -- Set runtime path of "/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_c.so" to ""
+[2.439s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs
+[2.439s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg
+[2.439s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/custom_message.hpp
+[2.439s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail
+[2.439s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_feedback__type_support.hpp
+[2.439s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_control__type_support.hpp
+[2.439s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/custom_message__struct.hpp
+[2.439s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_control__traits.hpp
+[2.439s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_control__builder.hpp
+[2.439s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_feedback__struct.hpp
+[2.440s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_feedback__struct.hpp
+[2.440s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_feedback__traits.hpp
+[2.440s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_feedback__builder.hpp
+[2.440s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_control__builder.hpp
+[2.440s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_control__traits.hpp
+[2.440s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/custom_message__type_support.hpp
+[2.440s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_feedback__traits.hpp
+[2.440s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_control__struct.hpp
+[2.440s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/custom_message__builder.hpp
+[2.440s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_feedback__type_support.hpp
+[2.441s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/custom_message__traits.hpp
+[2.441s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_feedback__builder.hpp
+[2.441s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_control__type_support.hpp
+[2.441s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_control__struct.hpp
+[2.441s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/drivetrain_feedback.hpp
+[2.441s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/drivetrain_control.hpp
+[2.441s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/science_control.hpp
+[2.441s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/science_feedback.hpp
+[2.441s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
+[2.441s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs
+[2.442s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg
+[2.442s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail
+[2.442s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/dds_fastrtps
+[2.442s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_control__rosidl_typesupport_fastrtps_cpp.hpp
+[2.442s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_control__rosidl_typesupport_fastrtps_cpp.hpp
+[2.442s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_feedback__rosidl_typesupport_fastrtps_cpp.hpp
+[2.442s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_feedback__rosidl_typesupport_fastrtps_cpp.hpp
+[2.442s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/custom_message__rosidl_typesupport_fastrtps_cpp.hpp
+[2.442s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[2.442s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so
+[2.443s] -- Set runtime path of "/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so" to ""
+[2.443s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs
+[2.443s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg
+[2.443s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail
+[2.443s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_control__rosidl_typesupport_introspection_cpp.hpp
+[2.443s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/custom_message__type_support.cpp
+[2.443s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_feedback__rosidl_typesupport_introspection_cpp.hpp
+[2.443s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_feedback__type_support.cpp
+[2.443s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_feedback__rosidl_typesupport_introspection_cpp.hpp
+[2.443s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_control__type_support.cpp
+[2.443s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_control__type_support.cpp
+[2.444s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/custom_message__rosidl_typesupport_introspection_cpp.hpp
+[2.444s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drivetrain_control__rosidl_typesupport_introspection_cpp.hpp
+[2.444s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/science_feedback__type_support.cpp
+[2.444s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_introspection_cpp.so
+[2.444s] -- Set runtime path of "/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_introspection_cpp.so" to ""
+[2.444s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_cpp.so
+[2.445s] -- Set runtime path of "/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_cpp.so" to ""
+[2.445s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/environment/pythonpath.sh
+[2.445s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/environment/pythonpath.dsv
+[2.445s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs-0.0.0-py3.10.egg-info
+[2.445s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs-0.0.0-py3.10.egg-info/SOURCES.txt
+[2.445s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs-0.0.0-py3.10.egg-info/PKG-INFO
+[2.445s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs-0.0.0-py3.10.egg-info/dependency_links.txt
+[2.445s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs-0.0.0-py3.10.egg-info/top_level.txt
+[2.445s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs
+[2.445s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/__init__.py
+[2.446s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_introspection_c.c
+[2.446s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
+[2.446s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/libcustom_msgs__rosidl_generator_py.so
+[2.446s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[2.446s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[2.446s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_c.c
+[2.446s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[2.447s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg
+[2.447s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/__init__.py
+[2.447s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_drivetrain_control.py
+[2.447s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_science_control.py
+[2.447s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_drivetrain_feedback_s.c
+[2.447s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_science_feedback_s.c
+[2.447s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_custom_message.py
+[2.447s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_drivetrain_control_s.c
+[2.447s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_science_control_s.c
+[2.447s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_science_feedback.py
+[2.448s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_custom_message_s.c
+[2.448s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_drivetrain_feedback.py
+[2.469s] Listing '/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs'...
+[2.469s] Compiling '/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/__init__.py'...
+[2.470s] Listing '/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg'...
+[2.470s] Compiling '/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/__init__.py'...
+[2.470s] Compiling '/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_drivetrain_control.py'...
+[2.471s] Compiling '/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_drivetrain_feedback.py'...
+[2.472s] Compiling '/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_science_control.py'...
+[2.473s] Compiling '/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_science_feedback.py'...
+[2.477s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[2.477s] -- Set runtime path of "/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so" to ""
+[2.477s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[2.478s] -- Set runtime path of "/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so" to ""
+[2.478s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[2.478s] -- Set runtime path of "/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so" to ""
+[2.478s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/lib/libcustom_msgs__rosidl_generator_py.so
+[2.479s] -- Set runtime path of "/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/lib/libcustom_msgs__rosidl_generator_py.so" to ""
+[2.479s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/msg/DrivetrainControl.idl
+[2.479s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/msg/DrivetrainFeedback.idl
+[2.479s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/msg/ScienceFeedback.idl
+[2.479s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/msg/ScienceControl.idl
+[2.479s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/msg/DrivetrainControl.msg
+[2.479s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/msg/DrivetrainFeedback.msg
+[2.479s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/msg/ScienceFeedback.msg
+[2.479s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/msg/ScienceControl.msg
+[2.479s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/ament_index/resource_index/package_run_dependencies/custom_msgs
+[2.479s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/ament_index/resource_index/parent_prefix_path/custom_msgs
+[2.479s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/environment/ament_prefix_path.sh
+[2.479s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/environment/ament_prefix_path.dsv
+[2.479s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/environment/path.sh
+[2.479s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/environment/path.dsv
+[2.480s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/local_setup.bash
+[2.480s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/local_setup.sh
+[2.480s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/local_setup.zsh
+[2.480s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/local_setup.dsv
+[2.480s] -- Installing: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/package.dsv
+[2.480s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/ament_index/resource_index/packages/custom_msgs
+[2.480s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_generator_cExport.cmake
+[2.480s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_generator_cExport-noconfig.cmake
+[2.480s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_typesupport_fastrtps_cExport.cmake
+[2.480s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[2.480s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_introspection_cExport.cmake
+[2.480s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[2.480s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_cExport.cmake
+[2.480s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_cExport-noconfig.cmake
+[2.481s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_generator_cppExport.cmake
+[2.481s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_typesupport_fastrtps_cppExport.cmake
+[2.481s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[2.481s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_introspection_cppExport.cmake
+[2.481s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[2.481s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_cppExport.cmake
+[2.481s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_cppExport-noconfig.cmake
+[2.481s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_generator_pyExport.cmake
+[2.481s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_generator_pyExport-noconfig.cmake
+[2.481s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/rosidl_cmake-extras.cmake
+[2.481s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+[2.481s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+[2.481s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/ament_cmake_export_targets-extras.cmake
+[2.481s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[2.481s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+[2.481s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[2.482s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/custom_msgsConfig.cmake
+[2.482s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/cmake/custom_msgsConfig-version.cmake
+[2.482s] -- Up-to-date: /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/install/custom_msgs/share/custom_msgs/package.xml
+[2.483s] Invoked command in '/home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/build/custom_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/tronsoc/baseStation/ARCh2025-BaseStation/ros2_ws/build/custom_msgs
